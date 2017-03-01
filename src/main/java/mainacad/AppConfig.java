@@ -17,7 +17,7 @@ public class AppConfig {
     DataSourceProperties dataSourceProperties;
 
     @Bean
-    @ConfigurationProperties(prefix = DataSourceProperties.PREFIX)
+    @ConfigurationProperties
     DataSource realDataSource() {
         DataSource dataSource = DataSourceBuilder
                 .create(this.dataSourceProperties.getClassLoader())
