@@ -1,4 +1,4 @@
-package mainacad;
+package org.mainacad.core;
 
 import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
 import org.springframework.beans.factory.annotation.Autowired;
