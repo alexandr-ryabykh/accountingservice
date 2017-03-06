@@ -1,4 +1,4 @@
-package org.mainacad.model;
+package org.mainacad.students.model;
 
 
 public class Student {

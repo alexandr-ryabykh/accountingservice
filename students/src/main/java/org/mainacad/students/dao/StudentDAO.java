@@ -1,6 +1,6 @@
-package org.mainacad.dao;
+package org.mainacad.students.dao;
 
-import org.mainacad.model.Student;
+import org.mainacad.students.model.Student;
 
 import java.util.List;
 
