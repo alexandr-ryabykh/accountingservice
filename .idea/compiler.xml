@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="accGoods" />
         <module name="core" />
+        <module name="register" />
         <module name="students" />
       </profile>
     </annotationProcessing>
@@ -31,6 +32,7 @@
       <module name="accGoods" target="1.6" />
       <module name="accounting-service" target="1.8" />
       <module name="core" target="1.8" />
+      <module name="register" target="1.8" />
       <module name="students" target="1.8" />
     </bytecodeTargetLevel>
   </component>

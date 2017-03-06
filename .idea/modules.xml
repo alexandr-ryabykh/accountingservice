@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/accGoods/accGoods.iml" filepath="$PROJECT_DIR$/accGoods/accGoods.iml" />
+      <module fileurl="file://$PROJECT_DIR$/accounting-service.iml" filepath="$PROJECT_DIR$/accounting-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register/register.iml" filepath="$PROJECT_DIR$/register/register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/students/students.iml" filepath="$PROJECT_DIR$/students/students.iml" />
+    </modules>
+  </component>
+</project>
