@@ -8,7 +8,9 @@ public class Student {
     private String surname;
     private String email;
 
-    public Student (){}
+    public Student() {
+    }
+
     public Student(long id, String name, String surname, String email) {
         this.id = id;
         this.name = name;
