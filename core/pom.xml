@@ -33,4 +33,11 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>students</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
