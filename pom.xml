@@ -18,6 +18,7 @@
         <module>core</module>
         <module>students</module>
         <module>register</module>
+        <module>accGoods</module>
     </modules>
     
     <properties>
