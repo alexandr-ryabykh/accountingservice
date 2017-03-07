@@ -2,17 +2,13 @@ package org.mainacad.students.dao.impl;
 
 import org.mainacad.students.dao.StudentDAO;
 import org.mainacad.students.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public class StudentDAOImpl implements StudentDAO {
 
-    @Autowired
     JdbcTemplate jdbcTemplate;
 
 

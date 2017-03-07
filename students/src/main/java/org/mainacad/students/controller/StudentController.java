@@ -1,5 +1,6 @@
 package org.mainacad.students.controller;
 
+import com.google.common.collect.ImmutableList;
 import org.mainacad.students.dao.impl.StudentDAOImpl;
 import org.mainacad.students.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,7 @@ import java.util.List;
 @RestController
 public class StudentController {
 
-    private StudentDAOImpl studentDAOimpl;
-
-    @Autowired
-    public StudentController(StudentDAOImpl studentDAOimpl) {
-        this.studentDAOimpl = studentDAOimpl;
-    }
+    private List<Student> students = ImmutableList.of(new Student(1, "Student", "Studentovich", "student@mail.com"));
 
     @RequestMapping("/welcome")
     public String welcome() {
@@ -28,14 +24,13 @@ public class StudentController {
     @RequestMapping("/students")
 
     public List<Student> findAll() {
-        return studentDAOimpl.findAll();
+        return students;
     }
 
 
     @RequestMapping(value = "/studentList", method = RequestMethod.GET)
     public String listStudents(Model model) {
-        List<Student> studentList = this.studentDAOimpl.findAll();
-        model.addAttribute("studentList", studentList);
+        model.addAttribute("studentList", students);
         return "studentList";
     }
 }
