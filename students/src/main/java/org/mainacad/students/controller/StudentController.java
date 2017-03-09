@@ -1,37 +1,74 @@
 package org.mainacad.students.controller;
 
-import com.google.common.collect.ImmutableList;
 import org.mainacad.students.dao.impl.StudentDAOImpl;
 import org.mainacad.students.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class StudentController {
 
-    private List<Student> students = ImmutableList.of(new Student(1, "Student", "Studentovich", "student@mail.com"));
+    private StudentDAOImpl studentDAOimpl;
 
-    @RequestMapping("/welcome")
+    @Autowired
+    public StudentController(StudentDAOImpl studentDAOimpl) {
+        this.studentDAOimpl = studentDAOimpl;
+    }
+
+    public StudentController() {
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome() {
-        return "Hi all";
+        return "welcome";
     }
 
-    @RequestMapping("/students")
-
-    public List<Student> findAll() {
-        return students;
-    }
-
-
-    @RequestMapping(value = "/studentList", method = RequestMethod.GET)
+    @RequestMapping(value = "/student/all", method = RequestMethod.GET)
     public String listStudents(Model model) {
-        model.addAttribute("studentList", students);
+        List<Student> studentList = this.studentDAOimpl.listStudents();
+        model.addAttribute("studentList", studentList);
         return "studentList";
     }
+
+    @RequestMapping(value = "/student/add", method = RequestMethod.GET)
+    public String getStudent(Model model) {
+        model.addAttribute("studentAttribute", new Student());
+        return "addStudent";
+    }
+
+    @RequestMapping(value = "/student/add", method = RequestMethod.POST)
+    public String saveStudent(@ModelAttribute("studentAttribute") Student student) {
+        this.studentDAOimpl.addStudent(student);
+        return "redirect:/student/all";
+    }
+
+    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
+    public ModelAndView getEditStudent(@PathVariable int id) {
+        ModelAndView modelAndView = new ModelAndView("editStudent");
+        Student student = this.studentDAOimpl.getStudent(id);
+        modelAndView.addObject("student", student);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/student/{id}", method = RequestMethod.POST)
+    public String saveEditContact(Student student) {
+        this.studentDAOimpl.editStudent(student);
+        return "redirect:/student/all";
+    }
+
+    @RequestMapping(value = "/student/{id}/remove", method = RequestMethod.GET)
+    public String removeContact(@PathVariable int id) {
+        this.studentDAOimpl.deleteStudent(id);
+        return "redirect:/student/all";
+    }
+
 }
 
