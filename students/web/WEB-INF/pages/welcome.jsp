@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../css/bootstrap.css">
+<script src="../js/bootstrap.js"></script>
 <html>
 <head>
     <title>Welcome</title>
