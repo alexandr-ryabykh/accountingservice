@@ -19,6 +19,7 @@
         <module>students</module>
         <module>accGoods</module>
         <module>register</module>
+        <module>register</module>
     </modules>
     
     <properties>
