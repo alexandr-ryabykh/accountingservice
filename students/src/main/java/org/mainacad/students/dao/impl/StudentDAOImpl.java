@@ -6,7 +6,9 @@ import org.mainacad.students.dao.StudentDAO;
 import org.mainacad.students.model.Student;
 
 import java.util.List;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StudentDAOImpl implements StudentDAO{
 
     private SessionFactory sessionFactory;
