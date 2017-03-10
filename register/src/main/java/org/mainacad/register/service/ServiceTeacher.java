@@ -1,6 +1,6 @@
-package org.mainacad.register.Service;
+package org.mainacad.register.service;
 
-import org.mainacad.register.Teacher.Teacher;
+import org.mainacad.register.teacher.Teacher;
 
 import java.util.List;
 

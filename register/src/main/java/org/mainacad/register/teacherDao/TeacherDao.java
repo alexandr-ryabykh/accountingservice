@@ -1,6 +1,6 @@
-package org.mainacad.register.TeacherDao;
+package org.mainacad.register.teacherDao;
 
-import org.mainacad.register.Teacher.Teacher;
+import org.mainacad.register.teacher.Teacher;
 
 import java.util.List;
 

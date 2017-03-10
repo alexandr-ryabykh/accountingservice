@@ -1,8 +1,8 @@
-package org.mainacad.register.TeacherDao;
+package org.mainacad.register.teacherDao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.mainacad.register.Teacher.Teacher;
+import org.mainacad.register.teacher.Teacher;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

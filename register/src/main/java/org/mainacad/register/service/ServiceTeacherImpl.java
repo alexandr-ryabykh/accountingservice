@@ -1,7 +1,7 @@
-package org.mainacad.register.Service;
+package org.mainacad.register.service;
 
-import org.mainacad.register.Teacher.Teacher;
-import org.mainacad.register.TeacherDao.TeacherDao;
+import org.mainacad.register.teacher.Teacher;
+import org.mainacad.register.teacherDao.TeacherDao;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

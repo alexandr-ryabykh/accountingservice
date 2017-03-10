@@ -1,4 +1,4 @@
-package org.mainacad.register.Teacher;
+package org.mainacad.register.teacher;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
