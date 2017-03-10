@@ -4,24 +4,21 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.mainacad.students.dao.StudentDAO;
 import org.mainacad.students.model.Student;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-public class StudentDAOImpl implements StudentDAO{
+public class StudentDAOImpl implements StudentDAO {
 
+    @Autowired
     private SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<Student> listStudents() {
-        SessionFactory sessionFactory = this.sessionFactory.getSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.getCurrentSession();
         List<Student> studentList = session.createQuery("from Student ").list();
         session.close();
         return studentList;

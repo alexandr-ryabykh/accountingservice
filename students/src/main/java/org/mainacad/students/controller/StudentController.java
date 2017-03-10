@@ -23,9 +23,6 @@ public class StudentController {
         this.studentDAOimpl = studentDAOimpl;
     }
 
-    public StudentController() {
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome() {
         return "welcome";
