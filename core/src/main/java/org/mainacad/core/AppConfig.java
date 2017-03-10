@@ -10,12 +10,14 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @Configuration
+@EntityScan(basePackages = {"org.mainacad"})
 public class AppConfig {
 
     @Autowired
@@ -24,7 +26,6 @@ public class AppConfig {
     @Autowired
     JpaProperties jpaProperties;
 
-    @Bean
     @ConfigurationProperties
     DataSource getDataSource() {
         DataSource dataSource = DataSourceBuilder
@@ -55,10 +56,11 @@ public class AppConfig {
     @Bean
     @ConfigurationProperties
     public LocalSessionFactoryBean getSessionFactory() {
+        DataSource dataSource = getDataSource();
         Properties hibernateProperties = new Properties();
-        hibernateProperties.putAll(jpaProperties.getHibernateProperties(getDataSource()));
+        hibernateProperties.putAll(jpaProperties.getHibernateProperties(dataSource));
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(getDataSource());
+        sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan(new String[]{"com.mainacad"});
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;

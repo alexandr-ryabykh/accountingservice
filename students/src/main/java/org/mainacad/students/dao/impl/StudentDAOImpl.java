@@ -18,9 +18,10 @@ public class StudentDAOImpl implements StudentDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<Student> listStudents() {
-        Session session = this.sessionFactory.getCurrentSession();
-        List<Student> studentList = session.createQuery("from Student ").list();
-        session.close();
+        List<Student> studentList;
+        try (Session session = this.sessionFactory.openSession()) {
+            studentList = session.createCriteria(Student.class).list();
+        }
         return studentList;
     }
 

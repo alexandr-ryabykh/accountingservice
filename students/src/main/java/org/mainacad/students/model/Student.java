@@ -1,10 +1,11 @@
 package org.mainacad.students.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "students", schema = "accountings")
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -78,16 +79,27 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Student)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Student)) {
+            return false;
+        }
 
         Student student = (Student) o;
 
-        if (getId() != student.getId()) return false;
-        if (getName() != null ? !getName().equals(student.getName()) : student.getName() != null) return false;
-        if (getSurname() != null ? !getSurname().equals(student.getSurname()) : student.getSurname() != null)
+        if (getId() != student.getId()) {
             return false;
-        if (getEmail() != null ? !getEmail().equals(student.getEmail()) : student.getEmail() != null) return false;
+        }
+        if (getName() != null ? !getName().equals(student.getName()) : student.getName() != null) {
+            return false;
+        }
+        if (getSurname() != null ? !getSurname().equals(student.getSurname()) : student.getSurname() != null) {
+            return false;
+        }
+        if (getEmail() != null ? !getEmail().equals(student.getEmail()) : student.getEmail() != null) {
+            return false;
+        }
 
         return true;
     }
