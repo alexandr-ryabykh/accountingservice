@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../css/bootstrap.css">
+<script src="../js/bootstrap.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
