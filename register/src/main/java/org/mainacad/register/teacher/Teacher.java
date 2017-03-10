@@ -1,13 +1,42 @@
-package org.mainacad.register;
+package org.mainacad.register.teacher;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Teachers")
+
 
 public class Teacher {
-    private String firstName, lastName;
+    @Id
+    @Column(name = "id")
     private int id;
 
-    public Teacher(String firstName, String lastName, int id) {
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "WorkHours")
+    private String workHours;
+
+
+    @Column(name = "WorkPaid")
+    private String workPaid;
+
+
+    public Teacher() {
+    }
+
+    public Teacher(int id, String firstName, String lastName, String workHours, String workPaid) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.id = id;
+        this.workHours = workHours;
+        this.workPaid = workPaid;
     }
 
     public String getFirstName() {
@@ -33,6 +62,23 @@ public class Teacher {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getWorkHours() {
+        return workHours;
+    }
+
+    public void setWorkHours(String workHours) {
+        this.workHours = workHours;
+    }
+
+    public String getWorkPaid() {
+        return workPaid;
+    }
+
+    public void setWorkPaid(String workPaid) {
+        this.workPaid = workPaid;
+    }
+
 
     @Override
     public int hashCode() {
