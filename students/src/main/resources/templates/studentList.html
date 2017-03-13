@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <title>List of students</title>
 </head>
 <body>
-<p>
-    <span th:text="${studentList}">Hello!</span>
-</p>
+<div class="container">
+    <h2>Student list</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Phone number</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="students : ${studentListAttribute}">
+            <td th:text="${students.id}"></td>
+            <td th:text="${students.name}"></td>
+            <td th:text="${students.surname}"></td>
+            <td th:text="${students.phoneNumber}"></td>
+            <td th:text="${students.email}"></td>
+            <td><a class="btn btn-xs btn-success" th:href="@{'/student/{id}' + ${students.id}}">Edit</a></td>
+            <td><a class="btn btn-xs btn-danger" th:href="@{'/student/{id}/remove' + ${students.id}}">Delete</a></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

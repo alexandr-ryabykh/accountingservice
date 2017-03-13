@@ -28,10 +28,10 @@ public class StudentController {
         return "welcome";
     }
 
-    @RequestMapping(value = "/student/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/students/all", method = RequestMethod.GET)
     public String listStudents(Model model) {
-        List<Student> studentList = this.studentDAOimpl.listStudents();
-        model.addAttribute("studentList", studentList);
+        List<Student> studentList = studentDAOimpl.listStudents();
+        model.addAttribute("studentListAttribute", studentList);
         return "studentList";
     }
 

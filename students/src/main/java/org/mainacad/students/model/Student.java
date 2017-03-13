@@ -1,7 +1,7 @@
 package org.mainacad.students.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "students", schema = "accountings")
@@ -9,6 +9,7 @@ public class Student implements Serializable {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Basic

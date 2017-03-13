@@ -1,68 +1,70 @@
 package org.mainacad.core;
 
-import java.util.Properties;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import org.hibernate.SessionFactory;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import java.util.Properties;
 
 @Configuration
+@EnableTransactionManagement
 @EntityScan(basePackages = {"org.mainacad"})
 public class AppConfig {
-
     @Autowired
-    DataSourceProperties dataSourceProperties;
+    Environment env;
 
-    @Autowired
-    JpaProperties jpaProperties;
+    @Bean(name = "dataSource")
+    public DataSource dataSource() {
+        DataSourceBuilder builder = DataSourceBuilder.create();
 
-    @ConfigurationProperties
-    DataSource getDataSource() {
-        DataSource dataSource = DataSourceBuilder
-                .create(this.dataSourceProperties.getClassLoader())
-                .url(this.dataSourceProperties.getUrl())
-                .username(this.dataSourceProperties.getUsername())
-                .password(this.dataSourceProperties.getPassword())
-                .driverClassName(this.dataSourceProperties.getDriverClassName())
-                .build();
-        return dataSource;
+        builder.driverClassName(env.getProperty("spring.datasource.driver-class-name"))
+                .url(env.getProperty("spring.datasource.url"))
+                .username(env.getProperty("spring.datasource.username"))
+                .password(env.getProperty("spring.datasource.password"));
+
+        return builder.build();
     }
 
     @Bean
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-        HibernateTransactionManager htm = new HibernateTransactionManager();
-        htm.setSessionFactory(sessionFactory);
-        return htm;
-    }
-
-    @Bean
-    @Autowired
-    public HibernateTemplate getHibernateTemplate(SessionFactory sessionFactory) {
-        HibernateTemplate hibernateTemplate = new HibernateTemplate(sessionFactory);
-        return hibernateTemplate;
-    }
-
-    @Bean
-    @ConfigurationProperties
-    public LocalSessionFactoryBean getSessionFactory() {
-        DataSource dataSource = getDataSource();
-        Properties hibernateProperties = new Properties();
-        hibernateProperties.putAll(jpaProperties.getHibernateProperties(dataSource));
+    public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan(new String[]{"com.mainacad"});
-        sessionFactory.setHibernateProperties(hibernateProperties);
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan(new String[]{"org.mainacad"});
+        sessionFactory.setHibernateProperties(hibernateProperties());
+
         return sessionFactory;
     }
+
+    Properties hibernateProperties() {
+        return new Properties() {
+            private static final long serialVersionUID = 9057467730041849300L;
+
+            {
+                setProperty("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
+            }
+        };
+    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager(SessionFactory sessionFactory) {
+        DataSourceTransactionManager txManager = new DataSourceTransactionManager();
+        txManager.setDataSource(dataSource());
+
+        return txManager;
+    }
+
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
+
 }
