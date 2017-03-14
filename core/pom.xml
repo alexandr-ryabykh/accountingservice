@@ -39,6 +39,11 @@
             <artifactId>students</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>accGoods</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!--<dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>register</artifactId>

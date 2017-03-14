@@ -22,8 +22,6 @@ public class StuffController {
     private StuffService stuffService;
 
     @Autowired(required = true)
-    @Qualifier(value = "stuffService")
-
     public void setStuffService(StuffService stuffService) {
         this.stuffService = stuffService;
     }
@@ -65,6 +63,9 @@ public class StuffController {
 
     }
 
-
+    @RequestMapping("/goods")
+    public String goodsList() {
+        return "test";
+    }
 
 }

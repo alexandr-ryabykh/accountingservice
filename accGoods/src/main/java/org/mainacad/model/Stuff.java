@@ -5,22 +5,22 @@ import com.sun.javafx.beans.IDProperty;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "???")
+//@Entity
+//@Table(name = "???")
 public class Stuff {
 
-    @Id
-    @Column(name = "???")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @Column(name = "???")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "?????")
+//    @Column(name = "?????")
     private String name;
 
-    @Column(name = "?????")
+//    @Column(name = "?????")
     private int quantity;
 
-    @Column(name = "?????")
+//    @Column(name = "?????")
     private int price;
 
     public int getId() {
