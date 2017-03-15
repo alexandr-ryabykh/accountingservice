@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -20,6 +21,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableAsync(proxyTargetClass = true)
 @EntityScan(basePackages = {"org.mainacad"})
+@EnableJpaRepositories(basePackages ={"org.mainacad"} )
 public class AppConfig {
     @Autowired
     Environment env;
