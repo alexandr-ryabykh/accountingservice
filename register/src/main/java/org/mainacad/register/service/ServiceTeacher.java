@@ -1,18 +1,14 @@
 package org.mainacad.register.service;
 
-import org.mainacad.register.teacher.Teacher;
-
-import java.util.List;
+import org.mainacad.register.domain.Teacher;
 
 public interface ServiceTeacher {
-    public List<Teacher> listTeacher();
+    Iterable<Teacher> listAllTeachers();
 
-    public void addTeacher(Teacher teacher);
+    Teacher saveTeacher(Teacher teacher);
 
-    public void deleteTeacher(int id);
+    void deleteTeacher(int id);
 
-    public void editTeacher(Teacher teacher);
-
-    public Teacher getTeacher(int id);
+    Teacher getTeacherById(int id);
 
 }

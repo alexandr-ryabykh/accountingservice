@@ -1,44 +1,42 @@
 package org.mainacad.register.service;
 
-import org.mainacad.register.teacher.Teacher;
-import org.mainacad.register.teacherDao.TeacherDao;
+import org.mainacad.register.domain.Teacher;
+import org.mainacad.register.repositories.TeacherRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
 public class ServiceTeacherImpl implements ServiceTeacher {
 
-    private TeacherDao teacherDao;
+    private TeacherRepository teacherRepository;
 
-    public void setTeacherDao(TeacherDao teacherDao) {
-        this.teacherDao = teacherDao;
+    @Autowired
+    public void setTeacherRepository(TeacherRepository teacherRepository) {
+        this.teacherRepository = teacherRepository;
+    }
+
+
+    @Override
+    public Iterable<Teacher> listAllTeachers() {
+        return teacherRepository.findAll();
     }
 
     @Override
-    public List<Teacher> listTeacher() {
-        return teacherDao.listTeacher();
+    public Teacher saveTeacher(Teacher teacher) {
+        return teacherRepository.save(teacher);
     }
 
-    @Override
-    public void addTeacher(Teacher teacher) {
-        teacherDao.addTeacher(teacher);
-
-    }
 
     @Override
     public void deleteTeacher(int id) {
-        teacherDao.deleteTeacher(id);
-
+        teacherRepository.delete(id);
     }
+
 
     @Override
-    public void editTeacher(Teacher teacher) {
-        teacherDao.editTeacher(teacher);
-
+    public Teacher getTeacherById(int id) {
+        return teacherRepository.findOne(id);
     }
 
-    @Override
-    public Teacher getTeacher(int id) {
-        return teacherDao.getTeacher(id);
-    }
+
 }

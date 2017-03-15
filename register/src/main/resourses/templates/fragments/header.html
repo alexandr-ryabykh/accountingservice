@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+</head>
+<body>
+
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/register}">Ведомость</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/teachers}">Преподы</a></li>
+                        <li><a href="#" th:href="@{/teacher/new}">Создать препода</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div class="">
+                    <h2>Ведомость</h2>
+
+                    <h3>Главная Страница</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <img src="../../static/images/images.jpg" width="500"
+                     th:src="@{/images/images.jpg}"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
