@@ -5,13 +5,9 @@ import org.mainacad.students.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 public class StudentController {
@@ -23,49 +19,40 @@ public class StudentController {
         this.studentDAOimpl = studentDAOimpl;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String welcome() {
-        return "welcome";
-    }
-
-    @RequestMapping(value = "/students/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/students", method = RequestMethod.GET)
     public String listStudents(Model model) {
-        List<Student> studentList = studentDAOimpl.listStudents();
-        model.addAttribute("studentListAttribute", studentList);
+        model.addAttribute("studentAttribute", this.studentDAOimpl.listStudents());
         return "studentList";
     }
 
-    @RequestMapping(value = "/student/add", method = RequestMethod.GET)
-    public String getStudent(Model model) {
-        model.addAttribute("studentAttribute", new Student());
-        return "addStudent";
+    @RequestMapping("student/{id}")
+    public String showStudent(@PathVariable long id, Model model) {
+        model.addAttribute("student", this.studentDAOimpl.getStudent(id));
+        return "studentShow";
     }
 
-    @RequestMapping(value = "/student/add", method = RequestMethod.POST)
-    public String saveStudent(@ModelAttribute("studentAttribute") Student student) {
+    @RequestMapping("student/edit/{id}")
+    public String editStudent(@PathVariable long id, Model model) {
+        model.addAttribute("student", this.studentDAOimpl.getStudent(id));
+        return "studentForm";
+    }
+
+    @RequestMapping("student/new")
+    public String newStudent(Model model) {
+        model.addAttribute("student", new Student());
+        return "studentForm";
+    }
+
+    @RequestMapping(value = "student", method = RequestMethod.POST)
+    public String addStudent(Student student) {
         this.studentDAOimpl.addStudent(student);
-        return "redirect:/student/all";
+        return "redirect:/students";
     }
 
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
-    public ModelAndView getEditStudent(@PathVariable int id) {
-        ModelAndView modelAndView = new ModelAndView("editStudent");
-        Student student = this.studentDAOimpl.getStudent(id);
-        modelAndView.addObject("student", student);
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.POST)
-    public String saveEditContact(Student student) {
-        this.studentDAOimpl.editStudent(student);
-        return "redirect:/student/all";
-    }
-
-    @RequestMapping(value = "/student/{id}/remove", method = RequestMethod.GET)
-    public String removeContact(@PathVariable int id) {
+    @RequestMapping("student/delete/{id}")
+    public String deleteStudent(@PathVariable long id) {
         this.studentDAOimpl.deleteStudent(id);
-        return "redirect:/student/all";
+        return "redirect:/students";
     }
-
 }
 

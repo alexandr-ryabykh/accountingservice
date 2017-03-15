@@ -6,28 +6,31 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <!-- Bootstrap theme -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
-    <title>List of students</title>
+    <title>Список студентов</title>
 </head>
 <body>
 <div class="container">
-    <h2>Student list</h2>
+    <h2>Список студентов</h2>
+    <a class="btn btn-default" href="#" th:href="@{/student/new}">Добавить нового студента</a>
     <table class="table table-striped">
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Phone number</th>
-            <th>Email</th>
-        </tr>
-        <tr th:each="students : ${studentListAttribute}">
-            <td th:text="${students.id}"></td>
+        <thead>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Тел. номер</th>
+        <th>Email</th>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="student" type="org.mainacad.students.model.Student"*/-->
+        <tr th:each="students : ${studentAttribute  }">
             <td th:text="${students.name}"></td>
             <td th:text="${students.surname}"></td>
             <td th:text="${students.phoneNumber}"></td>
             <td th:text="${students.email}"></td>
-            <td><a class="btn btn-xs btn-success" th:href="@{'/student/{id}' + ${students.id}}">Edit</a></td>
-            <td><a class="btn btn-xs btn-danger" th:href="@{'/student/{id}/remove' + ${students.id}}">Delete</a></td>
+            <td><a class="btn btn-xs btn-info" th:href="${ '/student/' + students.id}">Просмотр</a></td>
+            <td><a class="btn btn-xs btn-success" th:href="${'/student/edit/' + students.id}">Изменить</a></td>
+            <td><a class="btn btn-xs btn-danger" th:href="${'/student/delete/' + students.id}">Удалить</a></td>
         </tr>
+        </tbody>
     </table>
 </div>
 </body>

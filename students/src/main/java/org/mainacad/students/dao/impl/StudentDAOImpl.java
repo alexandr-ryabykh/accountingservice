@@ -5,15 +5,18 @@ import org.hibernate.SessionFactory;
 import org.mainacad.students.dao.StudentDAO;
 import org.mainacad.students.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
+@Repository
+@Transactional
 public class StudentDAOImpl implements StudentDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
+
 
     @SuppressWarnings("unchecked")
     @Override
@@ -27,39 +30,29 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public Student addStudent(Student student) {
-        Session session = this.sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        session.save(student);
-        session.getTransaction().commit();
-        session.close();
+        try (Session session = this.sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.merge(student);
+            session.getTransaction().commit();
+        }
         return student;
     }
 
     @Override
-    public void deleteStudent(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        Student student = session.get(Student.class, id);
-        session.delete(student);
-        session.getTransaction().commit();
-        session.close();
+    public void deleteStudent(long id) {
+        try (Session session = this.sessionFactory.openSession()) {
+            session.beginTransaction();
+            Student student = session.get(Student.class, id);
+            session.delete(student);
+            session.getTransaction().commit();
+        }
+
     }
 
     @Override
-    public Student editStudent(Student student) {
-        Session session = this.sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        session.merge(student);
-        session.getTransaction().commit();
-        session.close();
-        return student;
-    }
-
-    @Override
-    public Student getStudent(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
-        Student student = session.get(Student.class, id);
-        session.close();
-        return student;
+    public Student getStudent(long id) {
+        try (Session session = this.sessionFactory.openSession()) {
+            return session.get(Student.class, id);
+        }
     }
 }

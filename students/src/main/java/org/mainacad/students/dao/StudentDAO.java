@@ -9,10 +9,8 @@ public interface StudentDAO {
 
     public Student addStudent(Student student);
 
-    public void deleteStudent(int id);
+    public void deleteStudent(long id);
 
-    public Student editStudent(Student student);
-
-    public Student getStudent(int id);
+    public Student getStudent(long id);
 
 }

@@ -30,12 +30,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student editStudent(Student student) {
-        studentDAO.editStudent(student);
-        return student;
-    }
-
-    @Override
     public Student getStudent(int id) {
         return studentDAO.getStudent(id);
     }
