@@ -26,46 +26,41 @@ public class StuffController {
         this.stuffService = stuffService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/stuffs")
     public String listStuffs(Model model) {
-        model.addAttribute("", new Stuff());
-        model.addAttribute("", this.stuffService.listStuff());
-        return "";
+        model.addAttribute("stuffs", stuffService.listStuff());
+        return "stuffList";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String addStuff(@ModelAttribute("") Stuff stuff) {
-        if(stuff.getId()==0){
-            this.stuffService.addStuff(stuff);
-        }
-        else{
-            this.stuffService.updateStuff(stuff);
-        }
-
-        return ("redirect:");
+    @RequestMapping(value = "stuffs/new", method = RequestMethod.POST)
+    public String newStuff(Model model) {
+        model.addAttribute("stuffs", new Stuff());
+        return "stuffForm";
 
     }
+
 
     @RequestMapping("remove/id")
-    public String removeId(@PathVariable("id")int id){
-        this.stuffService.deleteStuff(id);
+    public String removeId(@PathVariable int id) {
+        stuffService.deleteStuff(id);
 
-        return "redirect:/";
+        return "redirect:/stuffs";
     }
 
-    @RequestMapping("edit id")
-    public String editStuff(@PathVariable("id") int id, Model model){
-        model.addAttribute("", this.stuffService.getStuff(id));
-        model.addAttribute("", this.stuffService.listStuff());
 
-        return "";
-
-
+    @RequestMapping("stuffs/{id}")
+    public String showStudent(@PathVariable int id, Model model) {
+        model.addAttribute("student", stuffService.getStuff(id));
+        return "stuffShow";
     }
 
-    @RequestMapping("/goods")
-    public String goodsList() {
-        return "test";
+    @RequestMapping("stuffs/edit/{id}")
+    public String editStudent(@PathVariable int id, Model model) {
+        model.addAttribute("student", stuffService.getStuff(id));
+        return "stufftForm";
     }
+
 
 }
+
+

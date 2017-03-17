@@ -9,9 +9,11 @@ import java.util.List;
  */
 public interface StuffService {
 
-    public void addStuff(Stuff good);
+    public void saveStuff(Stuff good);
+
     public void deleteStuff(int id);
-    public void updateStuff(Stuff stuff);
+
     public Stuff getStuff(int id);
-    public List<Stuff> listStuff();
+
+    public Iterable<Stuff> listStuff();
 }

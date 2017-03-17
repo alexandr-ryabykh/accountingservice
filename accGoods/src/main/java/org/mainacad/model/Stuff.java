@@ -1,90 +1,64 @@
 package org.mainacad.model;
 
 
-import com.sun.javafx.beans.IDProperty;
+import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-//@Entity
-//@Table(name = "???")
-public class Stuff {
 
-//    @Id
-//    @Column(name = "???")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+@Entity
+public class Stuff implements Serializable {
 
-//    @Column(name = "?????")
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-//    @Column(name = "?????")
-    private int quantity;
 
-//    @Column(name = "?????")
-    private int price;
+    private String nameOfStuff;
+    private Integer quantityOfStuff;
+    private Integer priceOfStuff;
 
-    public int getId() {
+
+    public Stuff() {
+
+    }
+
+    public Stuff(String nameOfStuff, Integer quantityOfStuff, Integer priceOfStuff) {
+        this.nameOfStuff = nameOfStuff;
+        this.quantityOfStuff = quantityOfStuff;
+        this.priceOfStuff = priceOfStuff;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameOfStuff() {
+        return nameOfStuff;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOfStuff(String nameOfStuff) {
+        this.nameOfStuff = nameOfStuff;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public Integer getQuantityOfStuff() {
+        return quantityOfStuff;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantityOfStuff(Integer quantityOfStuff) {
+        this.quantityOfStuff = quantityOfStuff;
     }
 
-    public int getPrice() {
-        return price;
+    public Integer getPriceOfStuff() {
+        return priceOfStuff;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Stuff stuff = (Stuff) o;
-
-        if (id != stuff.id) return false;
-        if (quantity != stuff.quantity) return false;
-        if (price != stuff.price) return false;
-        return name != null ? name.equals(stuff.name) : stuff.name == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + quantity;
-        result = 31 * result + price;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Stuff{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                '}';
+    public void setPriceOfStuff(Integer priceOfStuff) {
+        this.priceOfStuff = priceOfStuff;
     }
 }

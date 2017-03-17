@@ -1,7 +1,9 @@
 package org.mainacad.service;
 
-import org.mainacad.dao.StuffDao;
+import org.mainacad.dao.StuffCrudRepository;
+
 import org.mainacad.model.Stuff;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,43 +16,39 @@ import java.util.List;
 @Service
 public class StuffServiceImpl implements StuffService {
 
-    private StuffDao stuffDao;
+    private StuffCrudRepository stuffCrudRepository;
 
-    public void setStuffDao(StuffDao stuffDao) {
-        this.stuffDao = stuffDao;
+
+    @Autowired
+    public void setStuffDao(StuffCrudRepository stuffCrudRepository) {
+        this.stuffCrudRepository = stuffCrudRepository;
     }
 
     @Override
     @Transactional
-    public void addStuff(Stuff stuff) {
-        this.stuffDao.addStuff(stuff);
+    public void saveStuff(Stuff stuff) {
+        stuffCrudRepository.save(stuff);
 
     }
 
     @Override
     @Transactional
     public void deleteStuff(int id) {
-        this.stuffDao.deleteStuff(id);
+        stuffCrudRepository.delete(id);
 
     }
 
-    @Override
-    @Transactional
-    public void updateStuff(Stuff stuff) {
-        this.stuffDao.updateStuff(stuff);
-
-    }
 
     @Override
     @Transactional
     public Stuff getStuff(int id) {
-        return this.stuffDao.getStuff(id);
+        return stuffCrudRepository.findOne(id);
 
     }
 
     @Override
     @Transactional
-    public List<Stuff> listStuff() {
-        return this.stuffDao.listStuff();
+    public Iterable<Stuff> listStuff() {
+        return stuffCrudRepository.findAll();
     }
 }
