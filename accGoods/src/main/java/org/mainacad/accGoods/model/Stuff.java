@@ -1,8 +1,4 @@
 package org.mainacad.accGoods.model;
-
-
-
-
 import javax.persistence.*;
 import java.io.Serializable;
 

@@ -30,7 +30,7 @@ public class StuffController {
         return "stuffList";
     }
 
-    @RequestMapping(value = "stuffs/new", method = RequestMethod.POST)
+    @RequestMapping(value = "stuffs/new")
     public String newStuff(Model model) {
         model.addAttribute("stuffs", new Stuff());
         return "stuffForm";
@@ -49,7 +49,7 @@ public class StuffController {
     @RequestMapping("stuffs/{id}")
     public String showStuff(@PathVariable int id, Model model) {
         model.addAttribute("student", stuffService.getStuff(id));
-        return "stuffShow";
+        return "stuffToShow";
     }
 
     @RequestMapping("stuffs/edit/{id}")
