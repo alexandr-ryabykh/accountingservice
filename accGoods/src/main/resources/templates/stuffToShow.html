@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Информация о товаре</title>
+</head>
+<body>
+<div class="container">
+    <h3>Информация о студенте</h3>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Название:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static" th:text="${stuff.nameOfStuff}"></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Количество:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static" th:text="${stuff.quantityOfStuff}"></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Цена:</label>
+        <div class="col-sm-10">
+            <p class="form-control-static" th:text="${stuff.priceOfSuff}"></p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

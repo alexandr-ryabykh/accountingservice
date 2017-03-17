@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <title>Список студентов</title>
+</head>
+<body>
+<div class="container">
+    <h3>Список товаров</h3>
+    <a class="btn btn-default" href="#" th:href="@{/stuff/new}">Добавить новый товар</a>
+    <table class="table table-striped">
+        <thead>
+        <th>Название</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        </thead>
+        <tbody>
+
+
+        <tr th:each="stuff : ${stuffAttribute  }">
+            <td th:text="${stuffs.nameOfStuff}"></td>
+            <td th:text="${stuffs.quantityOfStuff}"></td>
+            <td th:text="${stuffs.priceOfStuff}"></td>
+            <td><a class="btn btn-xs btn-info" th:href="${ '/stuffs/' + stuff.id}">Просмотр</a></td>
+            <td><a class="btn btn-xs btn-success" th:href="${'/stuffs/edit/' + stuff.id}">Изменить</a></td>
+            <td><a class="btn btn-xs btn-danger" th:href="${'/stuffs/delete/' + stuff.id}">Удалить</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

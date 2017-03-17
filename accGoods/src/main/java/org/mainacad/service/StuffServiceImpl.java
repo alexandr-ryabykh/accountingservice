@@ -1,13 +1,12 @@
 package org.mainacad.service;
 
-import org.mainacad.dao.StuffCrudRepository;
+import org.mainacad.repository.StuffCrudRepository;
 
 import org.mainacad.model.Stuff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 /**
  * Created by Fujitsu on 05.03.2017.
