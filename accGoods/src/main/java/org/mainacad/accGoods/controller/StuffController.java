@@ -33,11 +33,11 @@ public class StuffController {
     @RequestMapping(value = "stuffs/new")
     public String newStuff(Model model) {
         model.addAttribute("stuffs", new Stuff());
-        return "redirect:/stuffs";
+        return "stuffForm";
 
     }
 
-    @RequestMapping(value = "stuffs/new", method = RequestMethod.POST)
+    @RequestMapping(value = "stuffs", method = RequestMethod.POST)
     String addStuff(Stuff stuff){
         stuffService.saveStuff(stuff);
         return "redirect:/stuffs";
