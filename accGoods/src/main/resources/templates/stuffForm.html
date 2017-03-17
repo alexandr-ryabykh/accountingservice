@@ -8,7 +8,7 @@
 <h3>Изменить информацию о товаре</h3>
 <div class="container">
     <div>
-        <form class="form-horizontal" th:object="${stuff}" th:action="@{/stuffs/new}" method="post">
+        <form class="form-horizontal" th:object="${stuffs}" th:action="@{/stuffs/new}" method="post">
             <input type="number" style="display: none" th:field="*{id}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Название:</label>
