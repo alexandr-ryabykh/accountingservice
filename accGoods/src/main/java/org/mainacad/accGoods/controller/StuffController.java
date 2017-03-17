@@ -26,7 +26,7 @@ public class StuffController {
 
     @RequestMapping(value = "/stuffs")
     public String listStuffs(Model model) {
-        model.addAttribute("stuffs", stuffService.listStuff());
+        model.addAttribute("stuffAttribute", stuffService.listStuff());
         return "stuffList";
     }
 
@@ -37,8 +37,8 @@ public class StuffController {
 
     }
 
-    @RequestMapping(value = "stuffs", method = RequestMethod.POST)
-    String addStuff(Stuff stuff){
+    @RequestMapping(value = "stuffs/new", method = RequestMethod.POST)
+    public String addStuff(Stuff stuff){
         stuffService.saveStuff(stuff);
         return "redirect:/stuffs";
     }
