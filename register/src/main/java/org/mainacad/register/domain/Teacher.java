@@ -1,4 +1,4 @@
-package org.mainacad.accGoods.register.domain;
+package org.mainacad.register.domain;
 
 import javax.persistence.*;
 

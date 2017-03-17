@@ -1,6 +1,6 @@
-package org.mainacad.accGoods.register.service;
+package org.mainacad.register.service;
 
-import org.mainacad.accGoods.register.domain.Teacher;
+import org.mainacad.register.domain.Teacher;
 
 public interface ServiceTeacher {
     Iterable<Teacher> listAllTeachers();

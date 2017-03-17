@@ -1,7 +1,7 @@
-package org.mainacad.accGoods.register.controllers;
+package org.mainacad.register.controllers;
 
-import org.mainacad.accGoods.register.domain.Teacher;
-import org.mainacad.accGoods.register.service.ServiceTeacher;
+import org.mainacad.register.domain.Teacher;
+import org.mainacad.register.service.ServiceTeacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

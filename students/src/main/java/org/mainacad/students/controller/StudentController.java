@@ -1,7 +1,7 @@
-package org.mainacad.accGoods.students.controller;
+package org.mainacad.students.controller;
 
-import org.mainacad.accGoods.students.dao.impl.StudentDAOImpl;
-import org.mainacad.accGoods.students.model.Student;
+import org.mainacad.students.dao.impl.StudentDAOImpl;
+import org.mainacad.students.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

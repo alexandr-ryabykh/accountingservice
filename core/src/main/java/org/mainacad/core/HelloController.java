@@ -1,4 +1,4 @@
-package org.mainacad.accGoods.core;
+package org.mainacad.core;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

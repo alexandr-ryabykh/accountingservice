@@ -1,6 +1,6 @@
-package org.mainacad.accGoods.students.service;
+package org.mainacad.students.service;
 
-import org.mainacad.accGoods.students.model.Student;
+import org.mainacad.students.model.Student;
 
 import java.util.List;
 

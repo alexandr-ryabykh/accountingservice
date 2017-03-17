@@ -1,4 +1,4 @@
-package org.mainacad.accGoods.core;
+package org.mainacad.core;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

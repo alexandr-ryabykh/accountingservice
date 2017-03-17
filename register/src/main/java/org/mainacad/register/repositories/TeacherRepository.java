@@ -1,6 +1,6 @@
-package org.mainacad.accGoods.register.repositories;
+package org.mainacad.register.repositories;
 
-import org.mainacad.accGoods.register.domain.Teacher;
+import org.mainacad.register.domain.Teacher;
 import org.springframework.data.repository.CrudRepository;
 
 

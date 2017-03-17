@@ -1,9 +1,9 @@
-package org.mainacad.accGoods.students.dao.impl;
+package org.mainacad.students.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.mainacad.accGoods.students.dao.StudentDAO;
-import org.mainacad.accGoods.students.model.Student;
+import org.mainacad.students.dao.StudentDAO;
+import org.mainacad.students.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,7 @@
-package org.mainacad.accGoods.register.service;
+package org.mainacad.register.service;
 
-import org.mainacad.accGoods.register.domain.Teacher;
-import org.mainacad.accGoods.register.repositories.TeacherRepository;
+import org.mainacad.register.domain.Teacher;
+import org.mainacad.register.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

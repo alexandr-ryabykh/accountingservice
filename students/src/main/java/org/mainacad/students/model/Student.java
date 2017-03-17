@@ -1,4 +1,4 @@
-package org.mainacad.accGoods.students.model;
+package org.mainacad.students.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
