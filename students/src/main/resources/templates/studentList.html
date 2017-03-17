@@ -20,7 +20,7 @@
         <th>Email</th>
         </thead>
         <tbody>
-        <!--/*@thymesVar id="student" type="org.mainacad.students.model.Student"*/-->
+        <!--/*@thymesVar id="student" type="org.mainacad.accGoods.students.model.Student"*/-->
         <tr th:each="students : ${studentAttribute  }">
             <td th:text="${students.name}"></td>
             <td th:text="${students.surname}"></td>
