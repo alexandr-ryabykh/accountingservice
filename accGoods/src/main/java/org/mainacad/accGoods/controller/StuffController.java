@@ -44,7 +44,7 @@ public class StuffController {
     }
 
 
-    @RequestMapping("remove/id")
+    @RequestMapping("stuffs/delete/{id}")
     public String removeId(@PathVariable int id) {
         stuffService.deleteStuff(id);
 
@@ -54,13 +54,13 @@ public class StuffController {
 
     @RequestMapping("stuffs/{id}")
     public String showStuff(@PathVariable int id, Model model) {
-        model.addAttribute("student", stuffService.getStuff(id));
+        model.addAttribute("stuffs", stuffService.getStuff(id));
         return "stuffToShow";
     }
 
     @RequestMapping("stuffs/edit/{id}")
     public String editStuff(@PathVariable int id, Model model) {
-        model.addAttribute("student", stuffService.getStuff(id));
+        model.addAttribute("stuffs", stuffService.getStuff(id));
         return "stuffForm";
     }
 
