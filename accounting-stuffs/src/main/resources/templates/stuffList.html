@@ -22,9 +22,9 @@
 
 
         <tr th:each="stuff : ${stuffAttribute  }">
-            <td th:text="${stuff.nameOfStuff}"></td>
-            <td th:text="${stuff.quantityOfStuff}"></td>
-            <td th:text="${stuff.priceOfStuff}"></td>
+            <td th:text="${stuff.name}"></td>
+            <td th:text="${stuff.quantity}"></td>
+            <td th:text="${stuff.price}"></td>
             <td><a class="btn btn-xs btn-info" th:href="${ '/stuffs/' + stuff.id}">Просмотр</a></td>
             <td><a class="btn btn-xs btn-success" th:href="${'/stuffs/edit/' + stuff.id}">Изменить</a></td>
             <td><a class="btn btn-xs btn-danger" th:href="${'/stuffs/delete/' + stuff.id}">Удалить</a></td>

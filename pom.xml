@@ -17,7 +17,7 @@
     <modules>
         <module>core</module>
         <module>students</module>
-        <module>accGoods</module>
+        <module>accounting-stuffs</module>
         <module>register</module>
         <module>timeManager</module>
     </modules>

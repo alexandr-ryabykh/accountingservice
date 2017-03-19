@@ -9,7 +9,7 @@
         <version>1.0.0</version>
     </parent>
   
-    <artifactId>accGoods</artifactId>
+    <artifactId>accounting-stuffs</artifactId>
     <version>1.0.0</version>
     <build>
         <plugins>

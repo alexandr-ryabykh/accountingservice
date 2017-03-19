@@ -1,8 +1,8 @@
-package org.mainacad.accGoods.controller;
+package org.mainacad.accstuffs.controller;
 
 
-import org.mainacad.accGoods.service.StuffService;
-import org.mainacad.accGoods.model.Stuff;
+import org.mainacad.accstuffs.service.StuffService;
+import org.mainacad.accstuffs.model.Stuff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +45,7 @@ public class StuffController {
 
 
     @RequestMapping("stuffs/delete/{id}")
-    public String removeId(@PathVariable int id) {
+    public String removeId(@PathVariable Long id) {
         stuffService.deleteStuff(id);
 
         return "redirect:/stuffs";
@@ -53,13 +53,13 @@ public class StuffController {
 
 
     @RequestMapping("stuffs/{id}")
-    public String showStuff(@PathVariable int id, Model model) {
+    public String showStuff(@PathVariable Long id, Model model) {
         model.addAttribute("stuffs", stuffService.getStuff(id));
         return "stuffToShow";
     }
 
     @RequestMapping("stuffs/edit/{id}")
-    public String editStuff(@PathVariable int id, Model model) {
+    public String editStuff(@PathVariable Long id, Model model) {
         model.addAttribute("stuffs", stuffService.getStuff(id));
         return "stuffForm";
     }

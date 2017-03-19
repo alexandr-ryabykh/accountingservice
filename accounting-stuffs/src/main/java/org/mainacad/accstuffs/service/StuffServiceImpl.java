@@ -1,8 +1,8 @@
-package org.mainacad.accGoods.service;
+package org.mainacad.accstuffs.service;
 
-import org.mainacad.accGoods.repository.StuffCrudRepository;
+import org.mainacad.accstuffs.repository.StuffCrudRepository;
 
-import org.mainacad.accGoods.model.Stuff;
+import org.mainacad.accstuffs.model.Stuff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class StuffServiceImpl implements StuffService {
 
 
     @Autowired
-    public void setStuffDao(StuffCrudRepository stuffCrudRepository) {
+    public void setStuffCrudRepository(StuffCrudRepository stuffCrudRepository) {
         this.stuffCrudRepository = stuffCrudRepository;
     }
 
@@ -32,7 +32,7 @@ public class StuffServiceImpl implements StuffService {
 
     @Override
     @Transactional
-    public void deleteStuff(int id) {
+    public void deleteStuff(Long id) {
         stuffCrudRepository.delete(id);
 
     }
@@ -40,7 +40,7 @@ public class StuffServiceImpl implements StuffService {
 
     @Override
     @Transactional
-    public Stuff getStuff(int id) {
+    public Stuff getStuff(Long id) {
         return stuffCrudRepository.findOne(id);
 
     }

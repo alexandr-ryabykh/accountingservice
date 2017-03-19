@@ -41,7 +41,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>accGoods</artifactId>
+            <artifactId>accounting-stuffs</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
