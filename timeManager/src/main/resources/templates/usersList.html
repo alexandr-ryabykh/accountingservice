@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <title>Users list</title>
+</head>
+<body>
+<div class="container">
+    <h2>Users list</h2>
+    <!--<a class="btn btn-default" href="#" th:href="@{/student/new}">Add new user</a>-->
+    <table class="table table-striped">
+        <thead>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Phone number</th>
+        <th>Email</th>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="student" type="org.mainacad.students.model.Student"*/-->
+        <!--<tr th:each="students : ${studentAttribute  }">
+            <td th:text="${students.name}"></td>
+            <td th:text="${students.surname}"></td>
+            <td th:text="${students.phoneNumber}"></td>
+            <td th:text="${students.email}"></td>
+            <td><a class="btn btn-xs btn-info" th:href="${ '/student/' + students.id}">Просмотр</a></td>
+            <td><a class="btn btn-xs btn-success" th:href="${'/student/edit/' + students.id}">Изменить</a></td>
+            <td><a class="btn btn-xs btn-danger" th:href="${'/student/delete/' + students.id}">Удалить</a></td>
+        </tr>-->
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
