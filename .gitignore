@@ -1,11 +1,11 @@
 /target/
 /core/target/
 /students/target/
-/accGoods/target/
+/accounting-stuffs/target/
 /register/target/
 /timeManager/target/
 .idea/
-accGoods/accGoods.iml
+accounting-stuffs/accounting-stuffs.iml
 accounting-service.iml
 core/core.iml
 register/register.iml
