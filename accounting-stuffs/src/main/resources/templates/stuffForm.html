@@ -2,30 +2,43 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>Изменение информации о товаре</title>
+    <title>Внести информацию об оплате</title>
 </head>
 <body>
-<h3>Изменить информацию о товаре</h3>
+<h3>Внести информацию о товаре</h3>
 <div class="container">
     <div>
         <form class="form-horizontal" th:object="${stuffs}" th:action="@{/stuffs/new}" method="post">
             <input type="number" style="display: none" th:field="*{id}"/>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Название:</label>
+                <label class="col-sm-2 control-label">Дата платежа:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{name}"/>
+                    <input type="date" class="form-control" th:field="*{date}"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Количество товара:</label>
+                <label class="col-sm-2 control-label">Содержание платежа:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{quantity}"/>
+                    <input type="text" class="form-control" th:field="*{paymentPurpose}"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Цена товара:</label>
+                <label class="col-sm-2 control-label">Сумма прихода:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{price}"/>
+                    <input type="text" class="form-control" th:field="*{income}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Сумма расхода:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{outcome}"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Статья бюджета:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{stateOfBudget}"/>
                 </div>
             </div>
 

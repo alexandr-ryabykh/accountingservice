@@ -14,17 +14,25 @@
     <a class="btn btn-default" href="#" th:href="@{/stuffs/new}">Добавить новый товар</a>
     <table class="table table-striped">
         <thead>
-        <th>Название</th>
-        <th>Количество</th>
-        <th>Цена</th>
+        <th>Дата</th>
+        <th>Содержание платежа</th>
+        <th>Сумма прихода</th>
+        <th>Сумма расхода</th>
+        <th>Статья бюджета</th>
+
+
         </thead>
         <tbody>
 
 
         <tr th:each="stuff : ${stuffAttribute  }">
-            <td th:text="${stuff.name}"></td>
-            <td th:text="${stuff.quantity}"></td>
-            <td th:text="${stuff.price}"></td>
+            <td th:text="${stuff.date}"></td>
+            <td th:text="${stuff.paymentPurpose}"></td>
+            <td th:text="${stuff.income}"></td>
+            <td th:text="${stuff.outcome}"></td>
+            <td th:text="${stuff.stateOfBudget}"></td>
+
+
             <td><a class="btn btn-xs btn-info" th:href="${ '/stuffs/' + stuff.id}">Просмотр</a></td>
             <td><a class="btn btn-xs btn-success" th:href="${'/stuffs/edit/' + stuff.id}">Изменить</a></td>
             <td><a class="btn btn-xs btn-danger" th:href="${'/stuffs/delete/' + stuff.id}">Удалить</a></td>

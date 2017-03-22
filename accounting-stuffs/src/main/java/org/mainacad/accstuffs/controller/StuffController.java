@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by Fujitsu on 06.03.2017.
  */
@@ -63,8 +67,6 @@ public class StuffController {
         model.addAttribute("stuffs", stuffService.getStuff(id));
         return "stuffForm";
     }
-
-
 }
 
 

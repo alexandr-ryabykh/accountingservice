@@ -1,6 +1,13 @@
 package org.mainacad.accstuffs.model;
-import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Entity
@@ -10,18 +17,14 @@ public class Stuff implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-    private String name;
-    private Integer quantity;
-    private Double price;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+    private String paymentPurpose;
+    private Double income;
+    private Double outcome;
+    private Double stateOfBudget;
 
     public Stuff() {
-    }
-
-    public Stuff(String name, Integer quantity, Double price) {
-        this.name = name;
-        this.quantity = quantity;
-        this.price = price;
     }
 
     public Long getId() {
@@ -32,27 +35,46 @@ public class Stuff implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Date getDate() {
+        return date;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public String getPaymentPurpose() {
+        return paymentPurpose;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setPaymentPurpose(String paymentPurpose) {
+        this.paymentPurpose = paymentPurpose;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getIncome() {
+        return income;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setIncome(Double income) {
+        this.income = income;
+    }
+
+    public Double getOutcome() {
+        return outcome;
+    }
+
+    public void setOutcome(Double outcome) {
+        this.outcome = outcome;
+    }
+
+    public Double getStateOfBudget() {
+        return stateOfBudget;
+    }
+
+    public void setStateOfBudget(Double stateOfBudget) {
+        this.stateOfBudget = stateOfBudget;
     }
 }
+
+
+
