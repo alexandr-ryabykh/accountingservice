@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
     <title>Список студентов</title>
 </head>
+<style>
+    body {
+        background: url(images/pic.jpg);
+        background-size: cover;
+    }
+    div {
+        opacity: 0.8;
+        background: #ffffff; /* Цвет фона */
+        padding: 5px; /* Поля вокруг текста */
+    }
+</style>
 <body>
 <div class="container">
     <h2>Список студентов</h2>
@@ -21,17 +32,20 @@
         </thead>
         <tbody>
         <!--/*@thymesVar id="student" type="org.mainacad.students.model.Student"*/-->
-        <tr th:each="students : ${studentAttribute  }">
-            <td th:text="${students.name}"></td>
-            <td th:text="${students.surname}"></td>
-            <td th:text="${students.phoneNumber}"></td>
-            <td th:text="${students.email}"></td>
-            <td><a class="btn btn-xs btn-info" th:href="${ '/student/' + students.id}">Просмотр</a></td>
-            <td><a class="btn btn-xs btn-success" th:href="${'/student/edit/' + students.id}">Изменить</a></td>
-            <td><a class="btn btn-xs btn-danger" th:href="${'/student/delete/' + students.id}">Удалить</a></td>
+        <tr th:each="student : ${studentAttribute}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.surname}"></td>
+            <td th:text="${student.phoneNumber}"></td>
+            <td th:text="${student.email}"></td>
+            <td><a class="btn btn-xs btn-info" th:href="${ '/student/' + student.id}">Просмотр</a></td>
+            <td><a class="btn btn-xs btn-success" th:href="${'/student/edit/' + student.id}">Изменить</a></td>
+            <td><a class="btn btn-xs btn-danger" th:href="${'/student/delete/' + student.id}">Удалить</a></td>
         </tr>
+        <div style="position:relative;bottom:10px;"></div>
         </tbody>
     </table>
+
+
 </div>
 </body>
 </html>
