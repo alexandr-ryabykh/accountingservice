@@ -1,18 +1,15 @@
 package org.mainacad.accstuffs.controller;
 
 
-import org.mainacad.accstuffs.service.StuffService;
 import org.mainacad.accstuffs.model.Stuff;
+import org.mainacad.accstuffs.service.StuffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import javax.validation.Valid;
 
 /**
  * Created by Fujitsu on 06.03.2017.
@@ -34,20 +31,21 @@ public class StuffController {
         return "stuffList";
     }
 
-    @RequestMapping(value = "stuffs/new")
-    public String newStuff(Model model) {
-        model.addAttribute("stuffs", new Stuff());
+    @GetMapping("/stuffs/new")
+    public String showForm(Stuff stuff) {
         return "stuffForm";
-
     }
 
-    @RequestMapping(value = "stuffs/new", method = RequestMethod.POST)
-    public String addStuff(Stuff stuff){
+    @PostMapping("/stuffs/new")
+    public String checkPersonInfo(@Valid Stuff stuff, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "stuffForm";
+        }
+
         stuffService.saveStuff(stuff);
         return "redirect:/stuffs";
     }
-
-
     @RequestMapping("stuffs/delete/{id}")
     public String removeId(@PathVariable Long id) {
         stuffService.deleteStuff(id);

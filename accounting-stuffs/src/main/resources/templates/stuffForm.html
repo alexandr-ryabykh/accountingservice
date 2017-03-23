@@ -8,7 +8,7 @@
 <h3>Внести информацию о товаре</h3>
 <div class="container">
     <div>
-        <form class="form-horizontal" th:object="${stuffs}" th:action="@{/stuffs/new}" method="post">
+        <form class="form-horizontal" th:object="${stuff}" th:action="@{/stuffs/new}" method="post">
             <input type="number" style="display: none" th:field="*{id}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Дата платежа:</label>
@@ -16,12 +16,15 @@
                     <input type="date" class="form-control" th:field="*{date}"/>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 control-label">Содержание платежа:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{paymentPurpose}"/>
+                    <input type="text" th:field="*{paymentPurpose}" />
+                    <p th:if="${#fields.hasErrors('paymentPurpose')}" th:errors="*{paymentPurpose}">Incorrect date</p>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 control-label">Сумма прихода:</label>
                 <div class="col-sm-10">

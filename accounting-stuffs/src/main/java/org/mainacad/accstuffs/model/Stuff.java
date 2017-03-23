@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,9 +20,15 @@ public class Stuff implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+
+    @Size(min=3, max=30)
     private String paymentPurpose;
+
+
     private Double income;
     private Double outcome;
+
+
     private Double stateOfBudget;
 
     public Stuff() {
