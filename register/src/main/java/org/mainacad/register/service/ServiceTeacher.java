@@ -5,10 +5,10 @@ import org.mainacad.register.domain.Teacher;
 public interface ServiceTeacher {
     Iterable<Teacher> listAllTeachers();
 
-    Teacher saveTeacher(Teacher teacher);
+    void saveTeacher(Teacher teacher);
 
-    void deleteTeacher(int id);
+    void deleteTeacher(Long id);
 
-    Teacher getTeacherById(int id);
+    Teacher getTeacherById(Long id);
 
 }

@@ -5,7 +5,10 @@ import org.mainacad.register.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
+
 public class ServiceTeacherImpl implements ServiceTeacher {
 
     private TeacherRepository teacherRepository;
@@ -22,19 +25,19 @@ public class ServiceTeacherImpl implements ServiceTeacher {
     }
 
     @Override
-    public Teacher saveTeacher(Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public void saveTeacher(Teacher teacher) {
+         teacherRepository.save(teacher);
     }
 
 
     @Override
-    public void deleteTeacher(int id) {
+    public void deleteTeacher(Long id) {
         teacherRepository.delete(id);
     }
 
 
     @Override
-    public Teacher getTeacherById(int id) {
+    public Teacher getTeacherById(Long id) {
         return teacherRepository.findOne(id);
     }
 
