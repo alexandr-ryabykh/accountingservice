@@ -1,9 +1,11 @@
 package org.mainacad.accstuffs.controller;
 
 
+import org.mainacad.accstuffs.exporter.XlsExporter;
 import org.mainacad.accstuffs.model.Stuff;
 import org.mainacad.accstuffs.service.StuffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -64,6 +66,13 @@ public class StuffController {
     public String editStuff(@PathVariable Long id, Model model) {
         model.addAttribute("stuffs", stuffService.getStuff(id));
         return "stuffForm";
+    }
+
+    @RequestMapping("stuffs/excel.xls")
+    public HttpEntity<byte[]> showExcel(){
+        byte[] xls = new XlsExporter().exportListOfStuffs(stuffService.listStuff());
+        return new HttpEntity<>(xls);
+       // return "redirect:/stuffs";
     }
 }
 

@@ -34,6 +34,14 @@ public class Stuff implements Serializable {
     public Stuff() {
     }
 
+    public Stuff(Date date, String paymentPurpose, Double income, Double outcome, Double stateOfBudget) {
+        this.date = date;
+        this.paymentPurpose = paymentPurpose;
+        this.income = income;
+        this.outcome = outcome;
+        this.stateOfBudget = stateOfBudget;
+    }
+
     public Long getId() {
         return id;
     }
