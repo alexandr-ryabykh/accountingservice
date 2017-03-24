@@ -1,7 +1,5 @@
 package org.mainacad.students.model;
 
-import org.mainacad.register.domain.Grouppy;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -27,21 +25,17 @@ public class Student implements Serializable {
     @Basic
     @Column(name = "email", nullable = true, length = 50)
     private String email;
-    @ManyToOne
-    @JoinColumn(name = "GROUPID")
-    private Grouppy grouppy;
 
     public Student() {
     }
 
-    public Student(long id, String name, String surname, String phoneNumber, String email, Grouppy grouppy) {
+    public Student(long id, String name, String surname, String phoneNumber, String email) {
 
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.grouppy = grouppy;
     }
 
     public long getId() {
@@ -118,13 +112,5 @@ public class Student implements Serializable {
         result = 31 * result + (getSurname() != null ? getSurname().hashCode() : 0);
         result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
         return result;
-    }
-
-    public Grouppy getGrouppy() {
-        return grouppy;
-    }
-
-    public void setGrouppy(Grouppy grouppy) {
-        this.grouppy = grouppy;
     }
 }

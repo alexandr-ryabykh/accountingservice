@@ -1,12 +1,10 @@
 package org.mainacad.register.controllers;
 
 import org.mainacad.register.domain.Teacher;
-import org.mainacad.register.service.ServiceGroup;
 import org.mainacad.register.service.ServiceTeacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,16 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TeacherController {
 
     private ServiceTeacher serviceTeacher;
-
-    private ServiceGroup serviceGroup;
-
-
-
-
-    @Autowired
-    public void setServiceGroup(ServiceGroup serviceGroup) {
-        this.serviceGroup = serviceGroup;
-    }
 
     @Autowired
     public void setServiceTeacher(ServiceTeacher serviceTeacher) {
@@ -38,13 +26,13 @@ public class TeacherController {
     }
 
     @RequestMapping("teacher/{id}")
-    public String showTeacher(@PathVariable Long id, Model model) {
+    public String showTeacher(@PathVariable Integer id, Model model) {
         model.addAttribute("teacher", serviceTeacher.getTeacherById(id));
         return "teachershow";
     }
 
     @RequestMapping("teacher/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("teacher", serviceTeacher.getTeacherById(id));
         return "teacherform";
     }
@@ -61,7 +49,7 @@ public class TeacherController {
     }
 
     @RequestMapping("teacher/delete/{id}")
-    public String delete(@PathVariable Long id){
+    public String delete(@PathVariable Integer id){
         serviceTeacher.deleteTeacher(id);
         return "redirect:/teachers";
     }
