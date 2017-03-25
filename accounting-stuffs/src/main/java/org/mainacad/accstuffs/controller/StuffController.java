@@ -63,13 +63,13 @@ public class StuffController {
 
     @RequestMapping("stuffs/{id}")
     public String showStuff(@PathVariable Long id, Model model) {
-        model.addAttribute("stuffs", stuffService.getStuff(id));
+        model.addAttribute("stuff", stuffService.getStuff(id));
         return "stuffToShow";
     }
 
     @RequestMapping("stuffs/edit/{id}")
-    public String editStuff(@PathVariable Long id, Model model) {
-        model.addAttribute("stuffs", stuffService.getStuff(id));
+    public String editStuff(@PathVariable long id, Model model) {
+        model.addAttribute("stuff", stuffService.getStuff(id));
         return "stuffForm";
     }
 

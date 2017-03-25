@@ -33,7 +33,7 @@ public class XlsExporter {
 
         rowhead.createCell((short) 5).setCellValue("StateOfBudget");
 
-        String filename = "d:\\f" + " test" + ".xls";
+        String filename = "d:\\f" + " test" + ".xlsx";
 
 
         for (Stuff s : stuffs) {

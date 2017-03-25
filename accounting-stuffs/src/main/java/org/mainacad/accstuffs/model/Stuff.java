@@ -26,7 +26,7 @@ public class Stuff implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
-    private Long id;
+    private long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Getter
@@ -40,15 +40,15 @@ public class Stuff implements Serializable {
 
     @Getter
     @Setter
-    private Double income;
+    private double income;
 
     @Getter
     @Setter
-    private Double outcome;
+    private double outcome;
 
     @Getter
     @Setter
-    private Double stateOfBudget;
+    private double stateOfBudget;
 
 
 
