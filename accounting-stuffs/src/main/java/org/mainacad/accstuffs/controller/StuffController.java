@@ -5,11 +5,12 @@ import org.mainacad.accstuffs.exporter.XlsExporter;
 import org.mainacad.accstuffs.model.Stuff;
 import org.mainacad.accstuffs.service.StuffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
@@ -22,9 +23,13 @@ public class StuffController {
 
     private StuffService stuffService;
 
+
+
     @Autowired(required = true)
     public void setStuffService(StuffService stuffService) {
         this.stuffService = stuffService;
+
+        stuffService.listStuff();
     }
 
     @RequestMapping(value = "/stuffs")
@@ -33,12 +38,12 @@ public class StuffController {
         return "stuffList";
     }
 
-    @GetMapping("/stuffs/new")
+    @RequestMapping(value="/stuffs/new", method = RequestMethod.GET)
     public String showForm(Stuff stuff) {
         return "stuffForm";
     }
 
-    @PostMapping("/stuffs/new")
+    @RequestMapping(value = "/stuffs/new", method = RequestMethod.POST)
     public String checkPersonInfo(@Valid Stuff stuff, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -68,11 +73,11 @@ public class StuffController {
         return "stuffForm";
     }
 
-    @RequestMapping("stuffs/excel.xls")
-    public HttpEntity<byte[]> showExcel(){
-        byte[] xls = new XlsExporter().exportListOfStuffs(stuffService.listStuff());
-        return new HttpEntity<>(xls);
-       // return "redirect:/stuffs";
+    @RequestMapping("stuffs/excel")
+    public String showExcel(){
+      new XlsExporter().exportListOfStuffs(stuffService.listStuff());
+//        return new HttpEntity<>(xls);
+        return "redirect:/stuffs";
     }
 }
 

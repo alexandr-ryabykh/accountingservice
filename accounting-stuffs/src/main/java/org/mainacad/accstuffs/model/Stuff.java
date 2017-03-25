@@ -1,5 +1,9 @@
 package org.mainacad.accstuffs.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -12,83 +16,43 @@ import java.util.Date;
 
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+
+
 public class Stuff implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
+    @Setter
     private Long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Getter
+    @Setter
     private Date date;
 
-    @Size(min=3, max=30)
+    @Size(min=3, max=30, message = "Должно быть больше 3 и меньше 30")
+    @Getter
+    @Setter
     private String paymentPurpose;
 
-
+    @Getter
+    @Setter
     private Double income;
+
+    @Getter
+    @Setter
     private Double outcome;
 
-
+    @Getter
+    @Setter
     private Double stateOfBudget;
 
-    public Stuff() {
-    }
 
-    public Stuff(Date date, String paymentPurpose, Double income, Double outcome, Double stateOfBudget) {
-        this.date = date;
-        this.paymentPurpose = paymentPurpose;
-        this.income = income;
-        this.outcome = outcome;
-        this.stateOfBudget = stateOfBudget;
-    }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getPaymentPurpose() {
-        return paymentPurpose;
-    }
-
-    public void setPaymentPurpose(String paymentPurpose) {
-        this.paymentPurpose = paymentPurpose;
-    }
-
-    public Double getIncome() {
-        return income;
-    }
-
-    public void setIncome(Double income) {
-        this.income = income;
-    }
-
-    public Double getOutcome() {
-        return outcome;
-    }
-
-    public void setOutcome(Double outcome) {
-        this.outcome = outcome;
-    }
-
-    public Double getStateOfBudget() {
-        return stateOfBudget;
-    }
-
-    public void setStateOfBudget(Double stateOfBudget) {
-        this.stateOfBudget = stateOfBudget;
-    }
 }
 
 
