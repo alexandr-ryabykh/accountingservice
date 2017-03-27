@@ -28,13 +28,13 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 
 
     @Override
-    public void deleteTeacher(Long id) {
+    public void deleteTeacher(int id) {
         teacherRepository.delete(id);
     }
 
 
     @Override
-    public Teacher getTeacherById(Long id) {
+    public Teacher getTeacherById(int id) {
         return teacherRepository.findOne(id);
     }
 

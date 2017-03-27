@@ -29,7 +29,6 @@
         <th>Фамилия</th>
         <th>Тел. номер</th>
         <th>Email</th>
-        <th>Группа</th>
         </thead>
         <tbody>
         <!--/*@thymesVar id="student" type="org.mainacad.students.model.Student"*/-->
@@ -38,7 +37,6 @@
             <td th:text="${student.surname}"></td>
             <td th:text="${student.phoneNumber}"></td>
             <td th:text="${student.email}"></td>
-            <td th:text="${student.grouppy}"></td>
             <td><a class="btn btn-xs btn-info" th:href="${ '/student/' + student.id}">Просмотр</a></td>
             <td><a class="btn btn-xs btn-success" th:href="${'/student/edit/' + student.id}">Изменить</a></td>
             <td><a class="btn btn-xs btn-danger" th:href="${'/student/delete/' + student.id}">Удалить</a></td>

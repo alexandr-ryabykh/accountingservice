@@ -18,7 +18,6 @@
                 <th>Фамилия</th>
                 <th>Кол-во часов</th>
                 <th>грн/час</th>
-                <th>Группы</th>
                 <th>Просмотреть</th>
                 <th>Редактировать</th>
                 <th>Удалить</th>
@@ -29,7 +28,6 @@
                 <td th:text="${teacher.lastName}">Фамилия</td>
                 <td th:text="${teacher.workHours}">Кол-во часов</td>
                 <td th:text="${teacher.workPaid}">грн/час</td>
-                <td th:text="${teacher.grouppies}">Группы</td>
                 <td><a th:href="${'/teacher/' + teacher.id}">Просмотреть</a></td>
                 <td><a th:href="${'/teacher/edit/' + teacher.id}">Редактировать</a></td>
                 <td><a th:href="${'/teacher/delete/' + teacher.id}">Удалить</a></td>
