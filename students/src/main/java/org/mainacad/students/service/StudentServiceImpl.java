@@ -1,36 +1,38 @@
 package org.mainacad.students.service;
 
-import org.mainacad.students.dao.StudentDAO;
+import org.mainacad.students.repositories.StudentRepository;
 import org.mainacad.students.model.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class StudentServiceImpl implements StudentService {
 
-    private StudentDAO studentDAO;
-
-    public void setStudentDAO(StudentDAO studentDAO) {
-        this.studentDAO = studentDAO;
+    private StudentRepository studentRepository;
+    @Autowired
+    public void setStudentRepository(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     @Override
-    public List<Student> listStudents() {
-        return studentDAO.listStudents();
+    public Iterable<Student> listStudents() {
+        return studentRepository.findAll();
     }
 
     @Override
     public Student addStudent(Student student) {
-        studentDAO.addStudent(student);
+        studentRepository.save(student);
         return student;
     }
 
     @Override
-    public void deleteStudent(int id) {
-        studentDAO.deleteStudent(id);
+    public void deleteStudent(long id) {
+        studentRepository.delete(id);
     }
 
     @Override
-    public Student getStudent(int id) {
-        return studentDAO.getStudent(id);
+    public Student getStudent(long id) {
+        return studentRepository.findOne(id);
     }
 }

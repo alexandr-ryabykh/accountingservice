@@ -26,13 +26,13 @@ public class TeacherController {
     }
 
     @RequestMapping("teacher/{id}")
-    public String showTeacher(@PathVariable Integer id, Model model) {
+    public String showTeacher(@PathVariable Long id, Model model) {
         model.addAttribute("teacher", serviceTeacher.getTeacherById(id));
         return "teachershow";
     }
 
     @RequestMapping("teacher/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model) {
+    public String edit(@PathVariable Long id, Model model) {
         model.addAttribute("teacher", serviceTeacher.getTeacherById(id));
         return "teacherform";
     }
@@ -49,7 +49,7 @@ public class TeacherController {
     }
 
     @RequestMapping("teacher/delete/{id}")
-    public String delete(@PathVariable Integer id){
+    public String delete(@PathVariable Long id){
         serviceTeacher.deleteTeacher(id);
         return "redirect:/teachers";
     }

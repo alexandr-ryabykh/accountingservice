@@ -7,8 +7,8 @@ public interface ServiceTeacher {
 
     Teacher saveTeacher(Teacher teacher);
 
-    void deleteTeacher(int id);
+    void deleteTeacher(Long id);
 
-    Teacher getTeacherById(int id);
+    Teacher getTeacherById(Long id);
 
 }
