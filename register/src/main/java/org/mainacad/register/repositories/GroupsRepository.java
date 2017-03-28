@@ -1,12 +1,10 @@
 package org.mainacad.register.repositories;
 
 import org.mainacad.register.domain.Groups;
-import org.mainacad.register.domain.Teacher;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.Set;
-
-
-public interface TeacherRepository extends CrudRepository<Teacher,Long> {
-
+/**
+ * Created by genich on 27.03.17.
+ */
+public interface GroupsRepository extends CrudRepository<Groups,Long>{
 }

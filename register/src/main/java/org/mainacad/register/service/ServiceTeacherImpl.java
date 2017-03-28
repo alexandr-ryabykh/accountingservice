@@ -1,9 +1,12 @@
 package org.mainacad.register.service;
 
+import org.mainacad.register.domain.Groups;
 import org.mainacad.register.domain.Teacher;
 import org.mainacad.register.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class ServiceTeacherImpl implements ServiceTeacher {
@@ -28,14 +31,19 @@ public class ServiceTeacherImpl implements ServiceTeacher {
 
 
     @Override
-    public void deleteTeacher(int id) {
+    public void deleteTeacher(long id) {
         teacherRepository.delete(id);
     }
 
 
     @Override
-    public Teacher getTeacherById(int id) {
+    public Teacher getTeacherById(long id) {
         return teacherRepository.findOne(id);
+    }
+
+    @Override
+    public Set<Groups> getGroupsOfTeacher(long id){
+        return teacherRepository.findOne(id).getGroups();
     }
 
 
