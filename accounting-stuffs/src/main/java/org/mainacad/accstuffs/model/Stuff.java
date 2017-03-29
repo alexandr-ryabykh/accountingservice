@@ -1,57 +1,40 @@
 package org.mainacad.accstuffs.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-
+@Data
 
 public class Stuff implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    @Setter
     private long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Getter
-    @Setter
+    @NotNull
     private Date date;
 
-    @Size(min=3, max=30, message = "Должно быть больше 3 и меньше 30")
-    @Getter
-    @Setter
+    @Size(min = 3, max = 30, message = "Должно быть больше 3 и меньше 30")
     private String paymentPurpose;
 
-    @Getter
-    @Setter
+
     private double income;
 
-    @Getter
-    @Setter
     private double outcome;
 
-    @Getter
-    @Setter
     private double stateOfBudget;
-
-
-
 
 }
 

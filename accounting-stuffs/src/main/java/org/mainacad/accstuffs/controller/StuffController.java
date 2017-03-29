@@ -5,6 +5,9 @@ import org.mainacad.accstuffs.exporter.XlsExporter;
 import org.mainacad.accstuffs.model.Stuff;
 import org.mainacad.accstuffs.service.StuffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +27,6 @@ public class StuffController {
     private StuffService stuffService;
 
 
-
     @Autowired(required = true)
     public void setStuffService(StuffService stuffService) {
         this.stuffService = stuffService;
@@ -38,7 +40,7 @@ public class StuffController {
         return "stuffList";
     }
 
-    @RequestMapping(value="/stuffs/new", method = RequestMethod.GET)
+    @RequestMapping(value = "/stuffs/new", method = RequestMethod.GET)
     public String showForm(Stuff stuff) {
         return "stuffForm";
     }
@@ -53,6 +55,7 @@ public class StuffController {
         stuffService.saveStuff(stuff);
         return "redirect:/stuffs";
     }
+
     @RequestMapping("stuffs/delete/{id}")
     public String removeId(@PathVariable Long id) {
         stuffService.deleteStuff(id);
@@ -74,10 +77,17 @@ public class StuffController {
     }
 
     @RequestMapping("stuffs/excel")
-    public String showExcel(){
-      new XlsExporter().exportListOfStuffs(stuffService.listStuff());
-//        return new HttpEntity<>(xls);
-        return "redirect:/stuffs";
+    public HttpEntity<byte[]> showExcel() {
+
+        byte[] documentBody = new XlsExporter().exportListOfStuffs(stuffService.listStuff());
+
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(new MediaType("application", "vnd.ms-excel"));
+
+        header.set(HttpHeaders.ACCEPT_RANGES, "bytes");
+        header.setContentLength(documentBody.length);
+
+        return new HttpEntity<byte[]>(documentBody, header);
     }
 }
 
