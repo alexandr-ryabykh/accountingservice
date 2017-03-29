@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <title>Projects list</title>
+</head>
+<body>
+<div class="container">
+    <h2>Projects list</h2>
+    <a class="btn btn-default" href="#" th:href="@{/tmprojects/new}">Add new Project</a>
+    <table class="table table-striped">
+        <thead>
+        <th>Project name</th>
+        <th>Project description</th>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="student" type="org.mainacad.students.model.Student"*/-->
+        <tr th:each="project : ${projectAttribute}">
+            <td th:text="${project.projectName}"></td>
+            <td th:text="${project.projectDescription}"></td>
+            <!--/*<td><a class="btn btn-xs btn-info" th:href="${ '/tmprojects/new' + project.id}">View</a></td>
+            <td><a class="btn btn-xs btn-success" th:href="${'/tmprojects/new' + project.id}">Edit</a></td>*/-->
+            <td><a class="btn btn-xs btn-danger" th:href="${'/tmprojects/delete/' + project.projectId}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
