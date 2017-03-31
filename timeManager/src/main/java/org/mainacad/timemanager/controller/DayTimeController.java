@@ -1,7 +1,10 @@
 package org.mainacad.timemanager.controller;
 
-import org.mainacad.timemanager.dao.impl.DayTimeDaoImpl;
-import org.mainacad.timemanager.model.DayTime;
+
+
+import lombok.Setter;
+import org.mainacad.db.register.domain.DayTime;
+import org.mainacad.db.register.service.DayTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +19,14 @@ public class DayTimeController {
     
 
         @Autowired
-        private DayTimeDaoImpl dayTimeDaoImpl;
+        @Setter
+        private DayTimeService dayTimeService;
 
-        @Autowired
-        public DayTimeController(DayTimeDaoImpl dayTimeDaoImpl) {
-            this.dayTimeDaoImpl = dayTimeDaoImpl;
-        }
+
 
         @RequestMapping(value = "/tmdayTimes", method = RequestMethod.GET)
         public String listDayTimes(Model model) {
-            model.addAttribute("dayTimeAttribute", this.dayTimeDaoImpl.listDayTimes());
+            model.addAttribute("dayTimeAttribute", this.dayTimeService.listDayTimes());
             return "dayTimeList";
         }
 
@@ -37,13 +38,13 @@ public class DayTimeController {
 
         @RequestMapping(value = "dayTimeAddDayTime", method = RequestMethod.POST)
         public String newDayTime(DayTime dayTime) {
-            this.dayTimeDaoImpl.addDayTime(dayTime);
+            this.dayTimeService.addDayTime(dayTime);
             return "redirect:/tmdayTimes";
         }
 
         @RequestMapping("tmdayTimes/delete/{dayTimeId}")
         public String deleteDayTime(@PathVariable long dayTimeId) {
-            this.dayTimeDaoImpl.deleteDayTime(dayTimeId);
+            this.dayTimeService.deleteDayTime(dayTimeId);
             return "redirect:/tmdayTimes";
         }
     }

@@ -1,8 +1,11 @@
 package org.mainacad.timemanager.controller;
 
 
-import org.mainacad.timemanager.dao.impl.ProjectDaoImpl;
-import org.mainacad.timemanager.model.Project;
+
+
+import lombok.Setter;
+import org.mainacad.db.register.domain.Project;
+import org.mainacad.db.register.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +18,14 @@ public class ProjectController {
 
 
     @Autowired
-    private ProjectDaoImpl projectDaoImpl;
+    @Setter
+    private ProjectService projectService;
 
-    @Autowired
-    public ProjectController(ProjectDaoImpl projectDaoImpl) {
-        this.projectDaoImpl = projectDaoImpl;
-    }
+
 
     @RequestMapping(value = "/tmprojects", method = RequestMethod.GET)
     public String listProjects(Model model) {
-        model.addAttribute("projectAttribute", this.projectDaoImpl.listProjects());
+        model.addAttribute("projectAttribute", this.projectService.listProjects());
         return "projectList";
     }
 
@@ -36,13 +37,13 @@ public class ProjectController {
 
     @RequestMapping(value = "projectAddProject", method = RequestMethod.POST)
     public String newProject(Project project) {
-        this.projectDaoImpl.addProject(project);
+        this.projectService.addProject(project);
         return "redirect:/tmprojects";
     }
 
     @RequestMapping("tmprojects/delete/{projectId}")
     public String deleteProject(@PathVariable long projectId) {
-        this.projectDaoImpl.deleteProject(projectId);
+        this.projectService.deleteProject(projectId);
         return "redirect:/tmprojects";
     }
     

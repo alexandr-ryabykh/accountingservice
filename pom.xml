@@ -20,6 +20,7 @@
         <module>accounting-stuffs</module>
         <module>register</module>
         <module>timeManager</module>
+        <module>db</module>
     </modules>
 
     <properties>

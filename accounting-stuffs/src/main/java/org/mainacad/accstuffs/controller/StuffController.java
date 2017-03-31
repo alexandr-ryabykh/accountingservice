@@ -2,8 +2,9 @@ package org.mainacad.accstuffs.controller;
 
 
 import org.mainacad.accstuffs.exporter.XlsExporter;
-import org.mainacad.accstuffs.model.Stuff;
-import org.mainacad.accstuffs.service.StuffService;
+
+import org.mainacad.db.register.domain.Stuff;
+import org.mainacad.db.register.service.StuffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -76,7 +77,7 @@ public class StuffController {
         return "stuffForm";
     }
 
-    @RequestMapping("stuffs/excel")
+    @RequestMapping("stuffs/excel.xls")
     public HttpEntity<byte[]> showExcel() {
 
         byte[] documentBody = new XlsExporter().exportListOfStuffs(stuffService.listStuff());
@@ -88,6 +89,7 @@ public class StuffController {
         header.setContentLength(documentBody.length);
 
         return new HttpEntity<byte[]>(documentBody, header);
+
     }
 }
 

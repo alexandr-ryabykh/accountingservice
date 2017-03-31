@@ -3,7 +3,8 @@ package org.mainacad.accstuffs.exporter;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.mainacad.accstuffs.model.Stuff;
+import org.mainacad.db.register.domain.Stuff;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
