@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8"/>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
-    <title>New user information</title>
+    <title>New userTM information</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<h2>New user information</h2>
+<h2>New userTM information</h2>
 <div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div>
         <form class="form-horizontal" th:object="${addNewUser}" th:action="@{/userAddUser}" method="post">
             <input type="number" style="display: none" th:field="*{userId}"/>

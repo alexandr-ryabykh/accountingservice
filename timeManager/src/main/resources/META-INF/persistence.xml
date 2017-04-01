@@ -7,7 +7,7 @@
         <properties>
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/accountings?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.userTM" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="1111"/>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>

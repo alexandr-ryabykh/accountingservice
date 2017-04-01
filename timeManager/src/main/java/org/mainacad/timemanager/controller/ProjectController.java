@@ -1,8 +1,5 @@
 package org.mainacad.timemanager.controller;
 
-
-
-
 import lombok.Setter;
 import org.mainacad.db.register.domain.Project;
 import org.mainacad.db.register.service.ProjectService;
@@ -16,12 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProjectController {
 
-
     @Autowired
     @Setter
     private ProjectService projectService;
-
-
 
     @RequestMapping(value = "/tmprojects", method = RequestMethod.GET)
     public String listProjects(Model model) {
@@ -46,5 +40,5 @@ public class ProjectController {
         this.projectService.deleteProject(projectId);
         return "redirect:/tmprojects";
     }
-    
+
 }

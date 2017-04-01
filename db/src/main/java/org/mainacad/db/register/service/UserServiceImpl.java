@@ -1,15 +1,10 @@
 package org.mainacad.db.register.service;
 
-
-
-
 import lombok.Setter;
-import org.mainacad.db.register.domain.User;
+import org.mainacad.db.register.domain.UserTM;
 import org.mainacad.db.register.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,13 +14,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public Iterable<User> listUsers() {
+    public Iterable<UserTM> listUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public void addUser(User user) {
-        userRepository.save(user);    }
+    public void addUser(UserTM userTM) {
+        userRepository.save(userTM);
+    }
 
     @Override
     public void deleteUser(long userId) {
@@ -33,7 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(long userId) {
+    public UserTM getUser(long userId) {
         return userRepository.findOne(userId);
     }
 }

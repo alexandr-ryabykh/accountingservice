@@ -1,4 +1,5 @@
 package org.mainacad.db.register.domain;
+
 import lombok.Getter;
 import lombok.Setter;
 

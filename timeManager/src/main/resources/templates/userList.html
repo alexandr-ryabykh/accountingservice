@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
     <title>Users list</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <h2>Users list</h2>
     <a class="btn btn-default" href="#" th:href="@{/tmusers/new}">Add new User</a>
     <table class="table table-striped">
@@ -22,8 +19,8 @@
         <tr th:each="user : ${userAttribute}">
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
-            <!--/*<td><a class="btn btn-xs btn-info" th:href="${ '/tmusers/new' + user.id}">View</a></td>
-            <td><a class="btn btn-xs btn-success" th:href="${'/tmusers/new' + user.id}">Edit</a></td>*/-->
+            <!--/*<td><a class="btn btn-xs btn-info" th:href="${ '/tmusers/new' + userTM.id}">View</a></td>
+            <td><a class="btn btn-xs btn-success" th:href="${'/tmusers/new' + userTM.id}">Edit</a></td>*/-->
             <td><a class="btn btn-xs btn-danger" th:href="${'/tmusers/delete/' + user.userId}">Delete</a></td>
         </tr>
         </tbody>

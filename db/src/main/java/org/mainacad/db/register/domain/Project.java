@@ -2,20 +2,16 @@ package org.mainacad.db.register.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-
 
 @Data
 @EqualsAndHashCode
 @Entity
 @Table(name = "TM_PROJECTS", schema = "accountings")
-public class Project implements Serializable{
+public class Project implements Serializable {
 
     @Id
     @Column(name = "PROJECT_ID", nullable = false)

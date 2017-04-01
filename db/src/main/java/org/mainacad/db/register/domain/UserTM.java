@@ -1,16 +1,13 @@
 package org.mainacad.db.register.domain;
 
-//import sun.plugin.util.UserProfile;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-        import java.util.Set;
+import java.util.Set;
 
-//@Data
 @Entity
 @Table(name = "TM_USERS", schema = "accountings")
-public class User implements Serializable {
+public class UserTM implements Serializable {
 
     @Id
     @Column(name = "USER_ID", nullable = false)
@@ -28,15 +25,15 @@ public class User implements Serializable {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "TM_USERS_TM_PROJECTS",
-            joinColumns = { @JoinColumn(name = "USER_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "PROJECT_ID") })
+            joinColumns = {@JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PROJECT_ID")})
     private Set<Project> userProjects = new HashSet<>();
 
 
-    public User() {
+    public UserTM() {
     }
 
-    public User(long userId, String firstName, String lastName) {
+    public UserTM(long userId, String firstName, String lastName) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -73,7 +70,6 @@ public class User implements Serializable {
     public void setUserProjects(Set<Project> userProjects) {
         this.userProjects = userProjects;
     }
-
 
 
 }

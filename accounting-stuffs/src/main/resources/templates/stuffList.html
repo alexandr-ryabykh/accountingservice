@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <!-- Bootstrap theme -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
     <title>Список товаров</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <h3>Список товаров</h3>
     <a class="btn btn-default" href="#" th:href="@{/stuffs/new}">Добавить новый товар</a>
     <table class="table table-striped">

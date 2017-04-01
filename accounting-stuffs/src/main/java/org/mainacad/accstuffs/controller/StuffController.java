@@ -1,6 +1,5 @@
 package org.mainacad.accstuffs.controller;
 
-
 import org.mainacad.accstuffs.exporter.XlsExporter;
 
 import org.mainacad.db.register.domain.Stuff;
@@ -18,15 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-/**
- * Created by Fujitsu on 06.03.2017.
- */
-
 @Controller
 public class StuffController {
 
     private StuffService stuffService;
-
 
     @Autowired(required = true)
     public void setStuffService(StuffService stuffService) {
@@ -64,7 +58,6 @@ public class StuffController {
         return "redirect:/stuffs";
     }
 
-
     @RequestMapping("stuffs/{id}")
     public String showStuff(@PathVariable Long id, Model model) {
         model.addAttribute("stuff", stuffService.getStuff(id));
@@ -88,7 +81,7 @@ public class StuffController {
         header.set(HttpHeaders.ACCEPT_RANGES, "bytes");
         header.setContentLength(documentBody.length);
 
-        return new HttpEntity<byte[]>(documentBody, header);
+        return new HttpEntity<>(documentBody, header);
 
     }
 }

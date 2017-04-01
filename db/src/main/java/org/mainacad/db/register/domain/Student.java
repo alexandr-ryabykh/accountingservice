@@ -7,9 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by genich on 27.03.17.
- */
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

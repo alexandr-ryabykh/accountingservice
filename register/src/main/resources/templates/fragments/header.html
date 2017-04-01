@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-
+<html xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:fragment="body">
+    <meta charset="UTF-8"/>
 </head>
 <body>
-
 <div class="container">
     <div th:fragment="header">
         <nav class="navbar navbar-default">
@@ -18,25 +18,23 @@
                         <li><a href="#" th:href="@{/group/new}">Создать группу</a></li>
                         <li><a href="#" th:href="@{/register/students}">Студенты</a></li>
                         <li><a href="#" th:href="@{/register/student/new}">Создать студента</a></li>
+                        <li><a href="#" th:href="@{/stuffs}">Расходники</a></li>
                     </ul>
-
+                    <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="userTM" th:href="@{/}">
+                                <span th:text="'Привет, ' + ${#authentication.name} + '!'"></span>
+                            </a>
+                        </li>
+                        <li><a href="/logout">Выйти</a></li>
+                    </ul>
+                    <ul sec:authorize="isAnonymous()" class="nav navbar-nav navbar-right">
+                        <li><a href="/login">Войти</a></li>
+                        <li><a href="/registration">Регистрация</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>
-
-        <div class="jumbotron">
-            <div class="row text-center">
-                <div class="">
-                    <h2>Ведомость</h2>
-
-                    <h3>Главная Страница</h3>
-                </div>
-            </div>
-            <div class="row text-center">
-                <img src="../../static/images/images.jpg" width="500"
-                     th:src="@{/images/images.jpg}"/>
-            </div>
-        </div>
     </div>
 </div>
 </body>

@@ -3,11 +3,14 @@
 /students/target/
 /accounting-stuffs/target/
 /register/target/
+/security/target
 /timeManager/target/
+/db/target
 .idea/
 accounting-stuffs/accounting-stuffs.iml
-accounting-service.iml
 core/core.iml
+security/security.iml
 register/register.iml
 students/students.iml
 timeManager/timeManager.iml
+db/db.iml

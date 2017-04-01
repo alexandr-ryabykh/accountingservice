@@ -12,10 +12,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
-
 @Entity
 @Data
-
 public class Stuff implements Serializable {
 
     @Id

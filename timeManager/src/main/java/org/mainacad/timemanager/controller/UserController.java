@@ -1,9 +1,7 @@
 package org.mainacad.timemanager.controller;
 
-
-
 import lombok.Setter;
-import org.mainacad.db.register.domain.User;
+import org.mainacad.db.register.domain.UserTM;
 import org.mainacad.db.register.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +17,6 @@ public class UserController {
     @Setter
     private UserService userService;
 
-
-
     @RequestMapping(value = "/tmusers", method = RequestMethod.GET)
     public String listUsers(Model model) {
         model.addAttribute("userAttribute", this.userService.listUsers());
@@ -29,13 +25,13 @@ public class UserController {
 
     @RequestMapping("tmusers/new")
     public String addUser(Model model) {
-        model.addAttribute("addNewUser", new User());
+        model.addAttribute("addNewUser", new UserTM());
         return "userForm";
     }
 
     @RequestMapping(value = "userAddUser", method = RequestMethod.POST)
-    public String newUser(User user) {
-        this.userService.addUser(user);
+    public String newUser(UserTM userTM) {
+        this.userService.addUser(userTM);
         return "redirect:/tmusers";
     }
 

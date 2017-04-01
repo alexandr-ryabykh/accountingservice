@@ -1,6 +1,5 @@
 package org.mainacad.db.register.service;
 
-
 import org.mainacad.db.register.domain.Groups;
 import org.mainacad.db.register.domain.Teacher;
 

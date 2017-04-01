@@ -7,9 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-/**
- * Created by genich on 31.03.17.
- */
 public class Register {
     @Getter
     @Setter

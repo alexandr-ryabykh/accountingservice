@@ -1,6 +1,5 @@
 package org.mainacad.db.register.service;
 
-
 import org.mainacad.db.register.domain.Groups;
 import org.mainacad.db.register.domain.Teacher;
 import org.mainacad.db.register.repositories.TeacherRepository;
@@ -19,7 +18,6 @@ public class ServiceTeacherImpl implements ServiceTeacher {
         this.teacherRepository = teacherRepository;
     }
 
-
     @Override
     public Iterable<Teacher> listAllTeachers() {
         return teacherRepository.findAll();
@@ -30,12 +28,10 @@ public class ServiceTeacherImpl implements ServiceTeacher {
         return teacherRepository.save(teacher);
     }
 
-
     @Override
     public void deleteTeacher(long id) {
         teacherRepository.delete(id);
     }
-
 
     @Override
     public Teacher getTeacherById(long id) {
@@ -43,9 +39,8 @@ public class ServiceTeacherImpl implements ServiceTeacher {
     }
 
     @Override
-    public Set<Groups> getGroupsOfTeacher(long id){
+    public Set<Groups> getGroupsOfTeacher(long id) {
         return teacherRepository.findOne(id).getGroups();
     }
-
 
 }

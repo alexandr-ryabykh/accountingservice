@@ -1,9 +1,5 @@
 package org.mainacad.students.controller;
 
-/**
- * Created by genich on 27.03.17.
- */
-
 import lombok.Setter;
 
 
@@ -34,8 +30,8 @@ public class StudentsController {
     }
 
     @ModelAttribute("allGroups")
-    public Iterable<Groups> getAllGroups(){
-        return  this.serviceGroups.listAllGroups();
+    public Iterable<Groups> getAllGroups() {
+        return this.serviceGroups.listAllGroups();
     }
 
     @RequestMapping(value = "/register/students", method = RequestMethod.GET)

@@ -9,9 +9,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-/**
- * Created by genich on 27.03.17.
- */
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

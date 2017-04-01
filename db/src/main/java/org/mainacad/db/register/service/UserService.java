@@ -1,15 +1,13 @@
 package org.mainacad.db.register.service;
 
-import org.mainacad.db.register.domain.User;
-
-
+import org.mainacad.db.register.domain.UserTM;
 
 public interface UserService {
-    public Iterable <User> listUsers();
+    public Iterable<UserTM> listUsers();
 
-    public void addUser(User user);
+    public void addUser(UserTM userTM);
 
     public void deleteUser(long userId);
 
-    public User getUser(long userId);
+    public UserTM getUser(long userId);
 }

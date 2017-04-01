@@ -1,6 +1,5 @@
 package org.mainacad.db.register.service;
 
-
 import lombok.Setter;
 
 import org.mainacad.db.register.domain.Student;
@@ -8,11 +7,8 @@ import org.mainacad.db.register.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by genich on 27.03.17.
- */
 @Service
-public class ServiceStudentImpl implements ServiceStudent{
+public class ServiceStudentImpl implements ServiceStudent {
 
     @Autowired
     @Setter
