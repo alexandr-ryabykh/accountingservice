@@ -16,11 +16,11 @@
 
     <modules>
         <module>core</module>
+        <module>db</module>
         <module>students</module>
         <module>accounting-stuffs</module>
         <module>register</module>
         <module>timeManager</module>
-        <module>db</module>
         <module>security</module>
     </modules>
 
