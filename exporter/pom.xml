@@ -9,10 +9,10 @@
         <artifactId>accounting-service</artifactId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>core</artifactId>
+    <artifactId>exporter</artifactId>
     <packaging>jar</packaging>
 
-    <name>core</name>
+    <name>exporter</name>
 
     <properties>
         <spring-loaded.version>1.2.6.RELEASE</spring-loaded.version>
@@ -23,28 +23,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>${spring-loaded.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
     
     <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>security</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>exporter</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>db</artifactId>

@@ -1,14 +1,18 @@
 package org.mainacad.db.register.domain;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
-@EqualsAndHashCode
 @Entity
 @Table(name = "TM_PROJECTS", schema = "accountings")
 public class Project implements Serializable {
@@ -26,37 +30,4 @@ public class Project implements Serializable {
     @Basic
     @Column(name = "PROJECT_DESCRIPTION", nullable = false, length = 250)
     private String projectDescription;
-
-   /* public Project() {
-    }
-
-    public Project(long projectId, String projectName, String projectDescription) {
-        this.projectId = projectId;
-        this.projectName = projectName;
-        this.projectDescription = projectDescription;
-    }
-
-    public long getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public String getProjectDescription() {
-        return projectDescription;
-    }
-
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription;
-    }*/
 }

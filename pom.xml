@@ -8,54 +8,57 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-    </parent>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <type>pom</type>
+                <version>1.5.2.RELEASE</version>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <modules>
         <module>core</module>
         <module>db</module>
-        <module>students</module>
-        <module>accounting-stuffs</module>
-        <module>register</module>
-        <module>timeManager</module>
+        <module>exporter</module>
         <module>security</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>mainacad.App</start-class>
+        <start-class>org.mainacad.core.App</start-class>
         <java.version>1.8</java.version>
         <lombok.version>1.16.14</lombok.version>
         <log4jdbc.log4j2.version>1.16</log4jdbc.log4j2.version>
         <rest.assured.version>2.9.0</rest.assured.version>
         <spring.boot.version>1.5.1.RELEASE</spring.boot.version>
         <spring.version>4.3.6.RELEASE</spring.version>
-        <mysql.version>6.0.5</mysql.version>
+        <mysql.version>6.0.6</mysql.version>
         <spring-loaded.version>1.2.6.RELEASE</spring-loaded.version>
         <logger.version>1.2</logger.version>
         <guava.version>21.0</guava.version>
         <apache.commons.version>3.5</apache.commons.version>
+        <apache.poi.version>3.15</apache.poi.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
-            <version>4.2.2.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>4.2.2.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>3.1.0.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
@@ -146,12 +149,12 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.15</version>
+            <version>${apache.poi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.15</version>
+            <version>${apache.poi.version}</version>
         </dependency>
     </dependencies>
     <build>
