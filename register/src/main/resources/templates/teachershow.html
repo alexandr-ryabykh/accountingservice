@@ -14,11 +14,6 @@
     <div>
         <form class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Teacher Id:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${teacher.id}">Teacher Id</p></div>
-            </div>
-            <div class="form-group">
                 <label class="col-sm-2 control-label">Имя:</label>
                 <div class="col-sm-10">
                     <p class="form-control-static" th:text="${teacher.firstName}">Имя</p>
@@ -36,7 +31,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>id</th>
+                            <!--<th>id</th>-->
                             <th>Название</th>
                             <th>Студенты</th>
                             <th>Просмотреть</th>
@@ -46,7 +41,6 @@
                         </thead>
                         <tbody>
                         <tr th:each="group : ${teacher.groups}">
-                            <td th:text="${group.id}"><a href="/group/${group.id}">Id</a></td>
                             <td th:text="${group.name}">Имя</td>
                             <td>
                                 <table class="table table-striped">
@@ -64,7 +58,8 @@
                                         <td th:text="${student.firstName}">Имя</td>
                                         <td th:text="${student.lastName}">Фамилия</td>
                                         <td><a th:href="${'/register/student/' + student.id}">Просмотреть</a></td>
-                                        <td><a th:href="${'/register/student/edit/' + student.id}">Редактировать</a></td>
+                                        <td><a th:href="${'/register/student/edit/' + student.id}">Редактировать</a>
+                                        </td>
                                         <td><a th:href="${'/register/student/delete/' + student.id}">Удалить</a></td>
                                     </tr>
                                     </tbody>
