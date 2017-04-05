@@ -1,10 +1,16 @@
 package org.mainacad.db.register.domain;
 
+//import sun.plugin.util.UserProfile;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+//@Data
 @Entity
 @Table(name = "TM_USERS", schema = "accountings")
 public class UserTM implements Serializable {
@@ -22,12 +28,14 @@ public class UserTM implements Serializable {
     @Column(name = "lAST_NAME", nullable = false, length = 50)
     private String lastName;
 
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<DayTime> dayTimes;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "TM_USERS_TM_PROJECTS",
-            joinColumns = {@JoinColumn(name = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "PROJECT_ID")})
-    private Set<Project> userProjects = new HashSet<>();
+
+
+
 
 
     public UserTM() {
@@ -62,14 +70,5 @@ public class UserTM implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public Set<Project> getUserProjects() {
-        return userProjects;
-    }
-
-    public void setUserProjects(Set<Project> userProjects) {
-        this.userProjects = userProjects;
-    }
-
 
 }

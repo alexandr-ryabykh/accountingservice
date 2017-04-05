@@ -1,7 +1,11 @@
 package org.mainacad.core.controller;
 
+
+
+
 import lombok.Setter;
 import org.mainacad.db.register.domain.Project;
+import org.mainacad.db.register.service.DayTimeService;
 import org.mainacad.db.register.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +17,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ProjectController {
 
+
     @Autowired
     @Setter
     private ProjectService projectService;
+
+    @Autowired
+    @Setter
+    private DayTimeService dayTimeService;
+
+
 
     @RequestMapping(value = "/tmprojects", method = RequestMethod.GET)
     public String listProjects(Model model) {

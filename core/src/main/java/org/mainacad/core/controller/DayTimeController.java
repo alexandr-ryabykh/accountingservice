@@ -1,11 +1,18 @@
 package org.mainacad.core.controller;
 
+
 import lombok.Setter;
 import org.mainacad.db.register.domain.DayTime;
+import org.mainacad.db.register.domain.Project;
+import org.mainacad.db.register.domain.Teacher;
+import org.mainacad.db.register.domain.UserTM;
 import org.mainacad.db.register.service.DayTimeService;
+import org.mainacad.db.register.service.ProjectService;
+import org.mainacad.db.register.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,9 +20,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class DayTimeController {
 
+
     @Autowired
     @Setter
     private DayTimeService dayTimeService;
+    @Autowired
+    @Setter
+    private ProjectService projectService;
+
+    @Autowired
+    @Setter
+    private UserService userService;
+
+
+    @ModelAttribute("allProjects")
+    public Iterable<Project> existingProjects() {
+        return this.projectService.listProjects();
+    }
+
+    @ModelAttribute("allUsers")
+    public Iterable<UserTM> existingUsers() {
+        return this.userService.listUsers();
+    }
 
 
     @RequestMapping(value = "/tmdayTimes", method = RequestMethod.GET)
@@ -41,5 +67,7 @@ public class DayTimeController {
         this.dayTimeService.deleteDayTime(dayTimeId);
         return "redirect:/tmdayTimes";
     }
+
+
 }
 

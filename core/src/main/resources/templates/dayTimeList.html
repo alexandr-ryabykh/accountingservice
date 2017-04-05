@@ -13,16 +13,16 @@
         <thead>
         <th>Hours per Day</th>
         <th>Date</th>
-        <th>User Id</th>
-        <th>Project Id</th>
+        <th>User First Name</th>
+        <th>Project Name</th>
         </thead>
         <tbody>
         <!--/*@thymesVar id="student" type="org.mainacad.students.model.Student"*/-->
         <tr th:each="dayTime : ${dayTimeAttribute}">
             <td th:text="${dayTime.hoursPerDay}"></td>
             <td th:text="${dayTime.date}"></td>
-            <td th:text="${dayTime.userId}"></td>
-            <td th:text="${dayTime.projectId}"></td>
+            <td th:text="${dayTime.users.firstName}"></td>
+            <td th:text="${dayTime.projects.projectName}"></td>
             <!--/*<td><a class="btn btn-xs btn-info" th:href="${ '/tmdayTimes/new' + dayTime.id}">View</a></td>
             <td><a class="btn btn-xs btn-success" th:href="${'/tmdayTimes/new' + dayTime.id}">Edit</a></td>*/-->
             <td><a class="btn btn-xs btn-danger" th:href="${'/tmdayTimes/delete/' + dayTime.dayTimeId}">Delete</a></td>

@@ -1,13 +1,20 @@
 package org.mainacad.db.register.domain;
 
+import lombok.*;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 //@Data
 //@EqualsAndHashCode
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "TM_DAYTIME", schema = "accountings")
 public class DayTime implements Serializable {
@@ -30,25 +37,31 @@ public class DayTime implements Serializable {
     @Column(name = "DATE", nullable = false)
     private Date date;
 
-    @Basic
+    /*@Basic
     //@NotEmpty
     @Column(name = "USER_ID", nullable = false)
-    private long userId;
+    private long userId;*/
 
-    @Basic
-    //@NotEmpty
-    @Column(name = "PROJECT_ID", nullable = false)
-    private long projectId;
+    @Getter
+    @Setter
+    @JoinColumn
+    @ManyToOne(optional = false)
+    private UserTM users;
+
+
+    @ManyToOne
+    @JoinColumn
+    private Project projects;
 
     public DayTime() {
     }
 
-    public DayTime(long dayTimeId, double hoursPerDay, Date date, long userId, long projectId) {
+    public DayTime(long dayTimeId, double hoursPerDay, Date date, UserTM users, Project projects) {
         this.dayTimeId = dayTimeId;
         this.hoursPerDay = hoursPerDay;
         this.date = date;
-        this.userId = userId;
-        this.projectId = projectId;
+        this.users = users;
+        this.projects = projects;
     }
 
     public long getDayTimeId() {
@@ -75,19 +88,25 @@ public class DayTime implements Serializable {
         this.date = date;
     }
 
-    public long getUserId() {
-        return userId;
+
+
+
+
+    public Project getProjects() {
+        return projects;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setProjects(Project projects) {
+        this.projects = projects;
     }
 
-    public long getProjectId() {
-        return projectId;
+
+
+    public UserTM getUserTMs() {
+        return users;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setUserTMs(UserTM users) {
+        this.users = users;
     }
 }
