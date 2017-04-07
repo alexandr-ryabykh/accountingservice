@@ -5,7 +5,9 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Register {
     @Getter
@@ -16,13 +18,23 @@ public class Register {
     @NotNull
     @Getter
     @Setter
-    private Date startDate;
+    private LocalDate startDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     @Getter
     @Setter
-    private Date finishDate;
+    private LocalDate finishDate;
+
+    public List<LocalDate> dateList(){
+        List<LocalDate> dates = new ArrayList<>();
+        LocalDate date = startDate;
+        while (!date.equals(finishDate)){
+            dates.add(date);
+            date=date.plusDays(1);
+        }
+        return dates;
+    }
 
 
 

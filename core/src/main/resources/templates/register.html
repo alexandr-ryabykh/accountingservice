@@ -12,13 +12,13 @@
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 </div>
 <div>
-    <form class="form-horizontal" th:object="${newRegister}" th:action="@{/register}" method="post">
+    <form class="form-horizontal" action="#" th:object="${register}" th:action="@{/register}" method="post">
 
         <div class="form-group">
             <label class="col-sm-2 control-label">выберите группу:</label>
             <label>
-                <select class="box_shadow info_dropdown" name="selectGroups" th:field="*{groups}">
-                    <option th:each="groups:${allGroups}" th:value="${groups}"
+                <select class="span2" name="selectGroups" th:field="*{groups}">
+                    <option th:each="groups:${allGroups}" th:value="${groups.id}"
                             th:text="${groups.name}">Groups
                     </option>
                 </select>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">Выберите период:    С:</label>
+            <label class="col-sm-2 control-label">Выберите период: С:</label>
             <div class="col-sm-2">
                 <input type="date" class="form-control" th:field="*{startDate}"/>
             </div>
@@ -34,18 +34,12 @@
             <div class="col-sm-2">
                 <input type="date" class="form-control" th:field="*{finishDate}"/>
             </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Скачать Ведомость</button>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Выберите дни занятий:</label>
-            <label class="radio-inline"><input type="radio" />Понедельник</label>
-            <label class="radio-inline"><input type="radio" />Вторник</label>
-            <label class="radio-inline"><input type="radio" />Среда</label>
-            <label class="radio-inline"><input type="radio" />Четверг</label>
-            <label class="radio-inline"><input type="radio" />Пятница</label>
-            <label class="radio-inline"><input type="radio" />Суббота</label>
-            <label class="radio-inline"><input type="radio" />Воскресенье</label>
-        </div>
+
     </form>
 </div>
 
