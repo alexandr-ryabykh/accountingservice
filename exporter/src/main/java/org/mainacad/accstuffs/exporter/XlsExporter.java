@@ -1,6 +1,5 @@
 package org.mainacad.accstuffs.exporter;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -15,103 +14,66 @@ import org.mainacad.db.register.domain.Stuff;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import org.apache.poi.ss.usermodel.Row;
+import org.mainacad.accstuffs.exporter.utils.RowModifier;
+import org.mainacad.db.register.domain.Teacher;
 
 public class XlsExporter {
+
+    private static final int HEADER = 0;
 
     int index = 1;
 
     public byte[] exportListOfStuffs(Iterable<Stuff> stuffs) {
         HSSFWorkbook hwb = new HSSFWorkbook();
-
         HSSFSheet sheet = hwb.createSheet("new sheet");
-
-        HSSFRow rowhead = sheet.createRow(0);
-
-        rowhead.createCell(0).setCellValue("SNo");
-
-        rowhead.createCell(1).setCellValue("Date");
-
-        rowhead.createCell(2).setCellValue("PaymentPurpose");
-
-        rowhead.createCell(3).setCellValue("Income");
-
-        rowhead.createCell(4).setCellValue("Outcome");
-
-        rowhead.createCell(5).setCellValue("StateOfBudget");
-
+        createHeader(sheet, "SNo", "Date", "PaymentPurpose", "Income", "Outcome", "StateOfBudget");
 
         for (Stuff s : stuffs) {
-            HSSFRow row = sheet.createRow(index);
+            RowModifier row = new RowModifier(sheet.createRow(index));
             int serialNumber = index - 1;
 
-            row.createCell(0).setCellValue(serialNumber);
-
-            row.createCell(1).setCellValue(s.getDate().toString());
-
-            row.createCell(2).setCellValue(s.getPaymentPurpose());
-
-            row.createCell(3).setCellValue(s.getIncome());
-
-            row.createCell(4).setCellValue(s.getOutcome());
-
-            row.createCell(5).setCellValue(s.getStateOfBudget());
-
+            row.addCell(serialNumber);
+            row.addCell(s.getDate().toString());
+            row.addCell(s.getPaymentPurpose());
+            row.addCell(s.getIncome());
+            row.addCell(s.getOutcome());
+            row.addCell(s.getStateOfBudget());
+            row.resetIndex();
             index++;
         }
 
-        try(ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
-            hwb.write(bos);
-            return bos.toByteArray();
-        } catch (IOException e) {
-            throw new RuntimeException("Error creating Excel file", e);
-        }
+        return toBytes(hwb);        
     }
 
-    public byte[] exportRegister(Register register){
+    public byte[] exportRegister(Register register) {
         HSSFWorkbook hwb = new HSSFWorkbook();
-
         HSSFSheet sheet = hwb.createSheet("new sheet");
 
-        CellStyle style = hwb.createCellStyle();
-        style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
-        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        CellStyle yellowStyle = hwb.createCellStyle();
+        yellowStyle.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
+        yellowStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-        CellStyle style1 = hwb.createCellStyle();
-        style1.setFillForegroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
-        style1.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        CellStyle greenStyle = hwb.createCellStyle();
+        greenStyle.setFillForegroundColor(IndexedColors.BRIGHT_GREEN.getIndex());
+        greenStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-        HSSFRow rowhead = sheet.createRow(0);
+        Teacher teacher = register.getGroups().getTeacher();
+        String trenerString = "Тренер: " + teacher.getFirstName() + " "
+                + teacher.getLastName();        
+        Row head = createHeader(sheet, trenerString);
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 3));
+        head.getCell(HEADER).setCellStyle(yellowStyle);
 
-        HSSFCell cell0= rowhead.createCell(0);
-
-        cell0.setCellValue("Тренер: " + register.getGroups().getTeacher().getFirstName()+" "+
-                register.getGroups().getTeacher().getLastName());
-
-        sheet.addMergedRegion(new CellRangeAddress(0,0,0,3));
-
-        cell0.setCellStyle(style);
-
-        HSSFRow row = sheet.createRow(1);
-
-        HSSFCell cell1=row.createCell(0);
-        cell1.setCellValue("Имя");
-        cell1.setCellStyle(style1);
-        HSSFCell cell2=row.createCell(1);
-        cell2.setCellValue("Фамилия");
-        cell2.setCellStyle(style1);
-        HSSFCell cell3=row.createCell(2);
-        cell3.setCellValue("эл. почта");
-        cell3.setCellStyle(style1);
-        HSSFCell cell4=row.createCell(3);
-        cell4.setCellValue("Телефон");
-        cell4.setCellStyle(style1);
+        Row firstRow = createRow(sheet, 1, "Имя", "Фамилия", "эл. почта", "Телефон");
+        firstRow.cellIterator().forEachRemaining(cell -> cell.setCellStyle(greenStyle));
 
         int i = 4;
-        for (LocalDate date:register.dateList()) {
-            row.createCell(i++).setCellValue(date.toString());
+        for (LocalDate date : register.dateList()) {
+            firstRow.createCell(i++).setCellValue(date.toString());
         }
-        i=2;
-        for(Student student:register.getGroups().getStudents()){
+        i = 2;
+        for (Student student : register.getGroups().getStudents()) {
             HSSFRow sheetRow = sheet.createRow(i++);
             sheetRow.createCell(0).setCellValue(student.getFirstName());
             sheetRow.createCell(1).setCellValue(student.getLastName());
@@ -119,17 +81,34 @@ public class XlsExporter {
             sheetRow.createCell(3).setCellValue(student.getPhoneNumber());
         }
 
-        HSSFRow hoursRow = sheet.createRow(i+1);
+        HSSFRow hoursRow = sheet.createRow(i + 1);
         hoursRow.createCell(0).setCellValue("Кол-во часов: ");
 
-        for(int j = 0;j<row.getLastCellNum();j++) {
+        for (int j = 0; j < firstRow.getLastCellNum(); j++) {
             sheet.autoSizeColumn(j);
-            if(j>3){
+            if (j > 3) {
                 hoursRow.createCell(j).setCellValue(register.getGroups().getTeacher().getWorkHours());
             }
         }
-        try(ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
-            hwb.write(bos);
+        return toBytes(hwb);
+    }
+
+    private Row createHeader(HSSFSheet sheet, String... headerNames) {
+        return createRow(sheet, HEADER, headerNames);
+    }
+    
+    private Row createRow(HSSFSheet sheet, int index, String... headerNames) {
+        Row row = sheet.createRow(index);
+        RowModifier rowhead = new RowModifier(row);
+        for (String headerName : headerNames) {
+            rowhead.addCell(headerName);
+        }
+        return row;
+    }
+
+    private byte[] toBytes(HSSFWorkbook workbook) {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+            workbook.write(bos);
             return bos.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException("Error creating Excel file", e);
