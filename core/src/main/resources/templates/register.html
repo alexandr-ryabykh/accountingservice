@@ -16,13 +16,15 @@
 
         <div class="form-group">
             <label class="col-sm-2 control-label">выберите группу:</label>
-            <label>
-                <select class="span2" name="selectGroups" th:field="*{groups}">
-                    <option th:each="groups:${allGroups}" th:value="${groups.id}"
-                            th:text="${groups.name}">Groups
-                    </option>
-                </select>
-            </label>
+
+                <div class="col-sm-2">
+                    <select class="form-control" name="selectGroups" th:field="*{groups}">
+                        <option th:each="groups:${allGroups}" th:value="${groups.id}"
+                                th:text="${groups.name}">Groups
+                        </option>
+                    </select>
+                </div>
+
         </div>
 
         <div class="form-group">
