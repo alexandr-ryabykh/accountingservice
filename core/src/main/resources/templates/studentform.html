@@ -7,7 +7,6 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-
     <h2>Подробнее</h2>
     <div>
         <form class="form-horizontal" th:object="${student}" th:action="@{/register/student}" method="post">
@@ -41,8 +40,8 @@
                 <label class="col-sm-2 control-label">Группа:</label>
                 <label>
                     <select class="box_shadow info_dropdown" name="selectGroups" th:field="*{groups}">
-                        <option th:each="groups:${allGroups}" th:value="${groups.id}"
-                                th:text="${groups.name}">Groups
+                        <option th:each="group:${allGroups}" th:value="${group.id}"
+                                th:text="${group.name}">Groups
                         </option>
                     </select>
                 </label>

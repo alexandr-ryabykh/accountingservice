@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-
     <title>Ведомость здесь!</title>
-
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-
     <h2>Подробнее</h2>
+    <a class="btn btn-default" href="#" th:href="@{/register/student/} + ${id} + @{/payment}">Оплата</a>
     <div>
         <form class="form-horizontal">
             <div class="form-group">
@@ -43,10 +41,8 @@
                     <p class="form-control-static" th:text="${student.phoneNumber}">Тел. номер</p>
                 </div>
             </div>
-
         </form>
     </div>
 </div>
-
 </body>
 </html>

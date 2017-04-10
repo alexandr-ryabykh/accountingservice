@@ -1,10 +1,10 @@
 package org.mainacad.core.controller;
 
 import lombok.Setter;
-
-
 import org.mainacad.db.register.domain.Groups;
+import org.mainacad.db.register.domain.Payments;
 import org.mainacad.db.register.domain.Student;
+import org.mainacad.db.register.service.PaymentService;
 import org.mainacad.db.register.service.ServiceGroups;
 import org.mainacad.db.register.service.ServiceStudent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,11 @@ public class StudentsController {
         this.serviceStudent = serviceStudent;
     }
 
+    @Autowired
+    @Setter
+    private PaymentService paymentService;
+
+
     @ModelAttribute("allGroups")
     public Iterable<Groups> getAllGroups() {
         return this.serviceGroups.listAllGroups();
@@ -37,6 +42,7 @@ public class StudentsController {
     @RequestMapping(value = "/register/students", method = RequestMethod.GET)
     public String listStudents(Model model) {
         model.addAttribute("studentsAttribute", this.serviceStudent.listAllStudent());
+        model.addAttribute("paymentsAttribute", paymentService.listAllPayments());
         return "studentlist";
     }
 
@@ -69,4 +75,21 @@ public class StudentsController {
         this.serviceStudent.deleteStudent(id);
         return "redirect:/register/students";
     }
+
+    @RequestMapping(value = "/register/student/{id}/payment", method = RequestMethod.GET)
+    public String showPayment(@PathVariable long id, Model model) {
+        model.addAttribute("payments", this.paymentService.getPaymentById(id));
+        model.addAttribute("student", this.serviceStudent.getStudentById(id));
+        model.addAttribute("payment", new Payments());
+        return "paymentform";
+    }
+
+    @RequestMapping(value = "/register/student/{id}/payment", method = RequestMethod.POST)
+    public String savePayment(@PathVariable long id, Payments payment) {
+        Student student = serviceStudent.getStudentById(id);
+        payment.setStudent(student);
+        paymentService.addPayment(payment);
+        return "redirect:/register/students";
+    }
+
 }

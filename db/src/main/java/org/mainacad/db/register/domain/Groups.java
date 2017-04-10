@@ -39,4 +39,7 @@ public class Groups implements Serializable{
     @OneToMany(mappedBy = "groups",cascade = CascadeType.ALL)
     private Set<Student> students;
 
+    @Getter
+    @Setter
+    private double price;
 }
