@@ -9,33 +9,6 @@
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div th:if="${not #lists.isEmpty(studentsAttribute)}">
         <h2>Список студентов</h2>
-        <!--   <table class="table table-striped">
-               <tr>
-                   <th>Имя</th>
-                   <th>Фамилия</th>
-                   <th>Эл. почта</th>
-                   <th>Группа</th>
-                   <th>Телефон</th>
-                   <th>Оплата</th>
-                   <th>Просмотреть</th>
-                   <th>Редактировать</th>
-                   <th>Удалить</th>
-               </tr>
-               <tr th:each="student : ${studentsAttribute}">
-                   <td th:text="${student.firstName}">Имя</td>
-                   <td th:text="${student.lastName}">Фамилия</td>
-                   <td th:text="${student.eMail}">Эл. почта</td>
-                   <td th:text="${student.groups.name}">Группа</td>
-                   <td th:text="${student.phoneNumber}">Телефон</td>
-               <tr th:each="payment:${paymentsAttribute}">
-                   <td th:text="${payment.paySum}"></td>
-               </tr>
-               <td><a th:href="${'/register/student/' + student.id}">Просмотреть</a></td>
-               <td><a th:href="${'/register/student/edit/' + student.id}">Редактировать</a></td>
-               <td><a th:href="${'/register/student/delete/' + student.id}">Удалить</a></td>
-               </tr>
-           </table>-->
-
         <table class="table table-striped">
             <tr>
                 <th>Имя</th>
@@ -66,10 +39,7 @@
                 <td><a th:href="${'/register/student/delete/' + student.id}">Удалить</a></td>
             </tr>
         </table>
-
-
     </div>
 </div>
-
 </body>
 </html>

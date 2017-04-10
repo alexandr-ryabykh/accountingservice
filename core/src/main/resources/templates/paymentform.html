@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Оплата</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <h3>Оплата</h3>
+    <div>
+        <form class="form-horizontal" th:object="${payment}" th:action="@{/register/student/} + ${student.id} + @{/payment}"
+              method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Имя:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${student.firstName}">Имя</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Фамилия:</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${student.lastName}">Фамилия</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Дата</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" th:field="*{date}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Сумма</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" th:field="*{paySum}"/>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Оплата</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
