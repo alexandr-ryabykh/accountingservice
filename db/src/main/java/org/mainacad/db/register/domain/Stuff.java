@@ -34,6 +34,8 @@ public class Stuff implements Serializable {
 
     private double stateOfBudget;
 
+    public void setId(long l) {
+    }
 }
 
 
