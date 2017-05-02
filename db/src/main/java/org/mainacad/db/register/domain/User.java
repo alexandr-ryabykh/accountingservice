@@ -16,13 +16,13 @@ public class User {
     private long id;
 
     @Column(name = "username", unique = true)
-    @NotEmpty(message = "{user.error.usernameRequired}")
-    @Size(min = 3, message = "{user.error.usernameLength}")
+    @NotEmpty(message = "Некорректное имя пользователя")
+    @Size(min = 3, message = "Имя должно содержать больше 3 символов")
     private String username;
 
     @Column(name = "password")
-    @NotEmpty(message = "{user.error.passwordRequired}")
-    @Size(min = 5, message = "{user.error.passwordLength}")
+    @NotEmpty(message = "Некорректный пароль")
+    @Size(min = 5, message = "Пароль должен содержать больше 5 символов")
     private String password;
 
     @Transient

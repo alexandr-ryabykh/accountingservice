@@ -42,7 +42,6 @@ public class StudentsController {
     @RequestMapping(value = "/register/students", method = RequestMethod.GET)
     public String listStudents(Model model) {
         model.addAttribute("studentsAttribute", this.serviceStudent.listAllStudent());
-        model.addAttribute("paymentsAttribute", paymentService.listAllPayments());
         return "studentlist";
     }
 

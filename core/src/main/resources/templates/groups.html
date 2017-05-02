@@ -16,6 +16,7 @@
                 <th>Название</th>
                 <th>Препод</th>
                 <th>Студенты</th>
+                <th>Стоимость</th>
                 <th>Просмотреть</th>
                 <th>Редактировать</th>
                 <th>Удалить</th>
@@ -39,6 +40,7 @@
                         </tr>
                     </table>
                 </td>
+                <td th:text="${group.price}"> Стоимость</td>
                 <td><a th:href="${'/group/' + group.id}">Просмотреть</a></td>
                 <td><a th:href="${'/group/edit/' + group.id}">Редактировать</a></td>
                 <td><a th:href="${'/group/delete/' + group.id}">Удалить</a></td>

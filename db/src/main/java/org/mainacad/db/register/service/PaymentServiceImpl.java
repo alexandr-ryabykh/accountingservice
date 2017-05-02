@@ -28,5 +28,4 @@ public class PaymentServiceImpl implements PaymentService {
     public Iterable<Payments> listAllPayments() {
         return paymentRepository.findAll();
     }
-    /*List<Payments> result = users.collect(Collectors.toList());*/
 }
