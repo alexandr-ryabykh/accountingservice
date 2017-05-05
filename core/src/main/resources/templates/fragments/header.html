@@ -10,8 +10,9 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" th:href="@{/register}">Ведомость</a>
+
                     <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/register}">Ведомость</a></li>
                         <li><a href="#" th:href="@{/teachers}">Преподы</a></li>
                         <li><a href="#" th:href="@{/teacher/new}">Создать препода</a></li>
                         <li><a href="#" th:href="@{/groups}">Группы</a></li>
@@ -19,6 +20,7 @@
                         <li><a href="#" th:href="@{/register/students}">Студенты</a></li>
                         <li><a href="#" th:href="@{/register/student/new}">Создать студента</a></li>
                         <li><a href="#" th:href="@{/stuffs}">Расходники</a></li>
+                        <li><a href="#" th:href="@{/tmstartpage}">TM</a></li>
                     </ul>
                     <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
                         <li>

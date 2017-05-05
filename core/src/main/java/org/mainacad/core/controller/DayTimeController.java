@@ -1,6 +1,8 @@
 package org.mainacad.core.controller;
 
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Streams;
 import lombok.Setter;
 import org.mainacad.db.register.domain.DayTime;
 import org.mainacad.db.register.domain.Project;
@@ -12,10 +14,12 @@ import org.mainacad.db.register.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class DayTimeController {
@@ -46,7 +50,10 @@ public class DayTimeController {
 
     @RequestMapping(value = "/tmdayTimes", method = RequestMethod.GET)
     public String listDayTimes(Model model) {
-        model.addAttribute("dayTimeAttribute", this.dayTimeService.listDayTimes());
+        Iterable<DayTime> dayTimes = dayTimeService.listDayTimes();
+        model.addAttribute("dayTimeAttribute", dayTimes);
+        double hours = Streams.stream(dayTimes).map(DayTime::getHoursPerDay).mapToDouble(Double::doubleValue).sum();
+        model.addAttribute("hours", hours);
         return "dayTimeList";
     }
 
@@ -66,6 +73,57 @@ public class DayTimeController {
     public String deleteDayTime(@PathVariable long dayTimeId) {
         this.dayTimeService.deleteDayTime(dayTimeId);
         return "redirect:/tmdayTimes";
+    }
+
+
+
+
+    @RequestMapping(value = "/tmdayTimes/allDayTimesChoseProjectUser", method = RequestMethod.GET)
+    public String getProjectUserForDT(Model model) {
+        model.addAttribute("allUsers", userService.listUsers());
+        model.addAttribute("allProjects", projectService.listProjects());
+        model.addAttribute("user", 0);
+        model.addAttribute("project", 0);
+
+
+
+        return "dayTimeAllChoseProjectUser";
+    }
+
+    @RequestMapping(value = "/tmdayTimes/allDayTimesChoseProjectUser", method = RequestMethod.POST)
+    public String getGetProjectUserForDT (String user, String project){
+        return "redirect:/tmdayTimes/allDayTimesProjectUser/" + user +"/"+ project;
+    }
+
+
+    @RequestMapping("tmstartpage")
+    public String showStartPage() {
+
+        return "tmstartpage";
+    }
+
+
+
+
+
+
+    /*@RequestMapping(value="/tmdayTimes/allDayTimesProjectUserPassParam", method = RequestMethod.GET)
+    public String deleteUser (@RequestParam Long user) {
+        Long abs = user;
+        return "redirect:/tmdayTimes/allDayTimesProjectUser";
+    }*/
+
+
+
+    @RequestMapping(value = "/tmdayTimes/allDayTimesProjectUser/{userId}/{projectId}", method = RequestMethod.GET)
+    public String showDayTimeByUserProject(Model model,@PathVariable long userId,@PathVariable long projectId) {
+        Iterable<DayTime> dayTimes = dayTimeService.listDayTimesForUserProject(userId,projectId);
+        model.addAttribute("dayTimeAttribute", dayTimes);
+        double hours = Streams.stream(dayTimes).map(DayTime::getHoursPerDay).mapToDouble(Double::doubleValue).sum();
+        model.addAttribute("hours", hours);
+
+
+        return "dayTimeList";
     }
 
 
